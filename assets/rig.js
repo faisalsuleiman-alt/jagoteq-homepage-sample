@@ -23,19 +23,19 @@
 
   function build(){
   let gl;try{gl=new THREE.WebGLRenderer({canvas,antialias:true})}catch(e){return giveUp()}
-  gl.setPixelRatio(Math.min(devicePixelRatio,2));gl.setClearColor(0x0d1110);
+  gl.setPixelRatio(Math.min(devicePixelRatio,2));gl.setClearColor(0x101010);
   gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=1.05;
-  const scene=new THREE.Scene();scene.fog=new THREE.Fog(0x0d1110,140,280);
+  const scene=new THREE.Scene();scene.fog=new THREE.Fog(0x101010,140,280);
   const cam=new THREE.PerspectiveCamera(38,1,.05,500);
 
   /* A small studio for the metal parts to reflect */
-  const room=new THREE.Scene();room.background=new THREE.Color(0x0a0d0c);
+  const room=new THREE.Scene();room.background=new THREE.Color(0x0c0c0c);
   [[0,8,0,12,.3,12,6],[-9,2,5,.3,7,7,2.4],[8,3,-6,.3,5,8,1.6],[10,1.5,1,.3,6,9,3]].forEach(([x,y,z,w,h,d,v])=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),new THREE.MeshBasicMaterial({color:new THREE.Color(v,v,v)}));m.position.set(x,y,z);room.add(m)});
   scene.environment=new THREE.PMREMGenerator(gl).fromScene(room,.02).texture;
   const key=new THREE.DirectionalLight(0xffffff,1.1);key.position.set(5,8,6);scene.add(key);
   const fill=new THREE.PointLight(0x92c83e,40,16);fill.position.set(26,2,2);scene.add(fill);
 
-  const floor=new THREE.Mesh(new THREE.PlaneGeometry(900,600),new THREE.MeshBasicMaterial({color:0x0d1110,toneMapped:false,depthWrite:false}));
+  const floor=new THREE.Mesh(new THREE.PlaneGeometry(900,600),new THREE.MeshBasicMaterial({color:0x101010,toneMapped:false,depthWrite:false}));
   floor.rotation.x=-Math.PI/2;floor.position.set(40,0,0);scene.add(floor);
 
   const V=(x,y,z)=>new THREE.Vector3(x,y,z);
@@ -43,7 +43,7 @@
   const glowPath=new THREE.CatmullRomCurve3([V(18.7,.1,0),V(21,.1,1),V(24,.1,-1.2),V(27,.1,1),V(30,.1,-1),V(33,.1,.4),V(34.4,.1,0)]);
 
   /* The transfer fiber stays dark: light only shows at the far end */
-  scene.add(new THREE.Mesh(new THREE.TubeGeometry(darkPath,420,.032,12),new THREE.MeshStandardMaterial({color:0x59615c,roughness:.42,metalness:.1})));
+  scene.add(new THREE.Mesh(new THREE.TubeGeometry(darkPath,420,.032,12),new THREE.MeshStandardMaterial({color:0x5f5f5f,roughness:.42,metalness:.1})));
 
   /* The glowing fiber: a bright core and a soft glow that fades towards its edges */
   scene.add(new THREE.Mesh(new THREE.TubeGeometry(glowPath,240,.055,12),new THREE.MeshBasicMaterial({color:0xffffff})));
@@ -66,7 +66,7 @@
     const d=()=>{g.clearRect(0,0,512,96);g.font='800 52px Figtree, Arial, sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillStyle='#fff';g.fillText(txt,256,48);t.needsUpdate=true};d();draws.push(d);
     const s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthWrite:false,depthTest:false,sizeAttenuation:false,toneMapped:false}));s.position.set(x,y,z);scene.add(s);labels.push(s);return s};
   /* One span over the dark cable: 200 ft is the most it can be, not a set length */
-  const span=new THREE.MeshBasicMaterial({color:0x9aa39d});
+  const span=new THREE.MeshBasicMaterial({color:0xa1a1a1});
   const spanBars=new THREE.Group();scene.add(spanBars);
   [[18,.03,.03,9.2,.05,-2.6],[.03,.03,.7,.2,.05,-2.6],[.03,.03,.7,18.2,.05,-2.6]].forEach(([w,h,d,x,y,z])=>{const b=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),span);b.position.set(x,y,z);spanBars.add(b)});
   const spanLabel=label('Up to 200 ft',9.2,.1,-4);
@@ -77,32 +77,32 @@
   const front=face(1024,920,(x,w,h)=>{
     x.fillStyle='#8f8884';x.fillRect(0,0,w,h);x.strokeStyle='#a9a56e';x.lineWidth=5;x.strokeRect(26,26,w-52,h-52);
     x.fillStyle='#a29c98';x.fillRect(250,70,520,300);x.strokeStyle='#bdb8b4';x.lineWidth=8;x.strokeRect(250,70,520,300);
-    x.fillStyle='#0a0c0b';x.fillRect(290,110,170,220);x.fillStyle='#92c83e';x.font='800 40px Figtree, Arial, sans-serif';x.textAlign='center';x.fillText('LF120',375,235);
-    x.fillStyle='#191b1a';x.beginPath();x.arc(620,170,46,0,7);x.fill();x.fillStyle='#d9d6d2';[[620,265],[620,315]].forEach(([a,b])=>{x.beginPath();x.arc(a,b,13,0,7);x.fill()});
-    x.fillStyle='#f0f2ee';x.font='italic 500 76px Figtree, Arial, sans-serif';x.fillText('Jagoteq',640,560);
+    x.fillStyle='#0c0c0c';x.fillRect(290,110,170,220);x.fillStyle='#92c83e';x.font='800 40px Figtree, Arial, sans-serif';x.textAlign='center';x.fillText('LF120',375,235);
+    x.fillStyle='#1b1b1b';x.beginPath();x.arc(620,170,46,0,7);x.fill();x.fillStyle='#d9d6d2';[[620,265],[620,315]].forEach(([a,b])=>{x.beginPath();x.arc(a,b,13,0,7);x.fill()});
+    x.fillStyle='#f1f1f1';x.font='italic 500 76px Figtree, Arial, sans-serif';x.fillText('Jagoteq',640,560);
     x.fillStyle='#f2c52e';x.fillRect(70,470,180,70);x.fillRect(330,600,150,56);
-    [[300,770],[420,770],[540,770]].forEach(([a,b])=>{x.fillStyle='#151716';x.beginPath();x.arc(a,b,46,0,7);x.fill();x.strokeStyle='#6e6a67';x.lineWidth=5;x.stroke()});
-    x.fillStyle='#d9d6d2';x.beginPath();x.arc(780,650,32,0,7);x.fill();x.fillStyle='#111312';x.fillRect(700,730,150,86)});
+    [[300,770],[420,770],[540,770]].forEach(([a,b])=>{x.fillStyle='#171717';x.beginPath();x.arc(a,b,46,0,7);x.fill();x.strokeStyle='#6e6a67';x.lineWidth=5;x.stroke()});
+    x.fillStyle='#d9d6d2';x.beginPath();x.arc(780,650,32,0,7);x.fill();x.fillStyle='#131313';x.fillRect(700,730,150,86)});
   const side=face(1024,920,(x,w,h)=>{
     x.fillStyle='#4c4845';x.fillRect(0,0,w,h);x.strokeStyle='#a9a56e';x.lineWidth=5;x.strokeRect(26,26,w-52,h-52);x.fillStyle='#b9b5b1';x.fillRect(26,448,w-52,22);
     x.fillStyle='#b9b5b1';[[300,70],[300,520]].forEach(([a,b])=>{for(let i=0;i<14;i++)for(let j=0;j<20;j++){const n=Math.abs(j-9.5);if(n<7+((i>3&&i<10)?3:0))x.fillRect(a+j*22,b+i*24,15,14)}})});
   const paint=new THREE.MeshStandardMaterial({color:0x8f8884,roughness:.55,metalness:.3});
-  const silver=new THREE.MeshStandardMaterial({color:0xd5d7d6,roughness:.3,metalness:.9});
+  const silver=new THREE.MeshStandardMaterial({color:0xd7d7d7,roughness:.3,metalness:.9});
   const eng=new THREE.Group();
   eng.add(new THREE.Mesh(new THREE.BoxGeometry(1,.9,1.05),[new THREE.MeshStandardMaterial({map:front,roughness:.55,metalness:.2}),paint,paint,paint,new THREE.MeshStandardMaterial({map:side,roughness:.55,metalness:.2}),new THREE.MeshStandardMaterial({map:side,roughness:.55,metalness:.2})]));
   const bar=(w,h,d,x,y,z)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),silver);m.position.set(x,y,z);eng.add(m)};
   [[.5,.46],[.5,-.46],[-.5,.46],[-.5,-.46]].forEach(([x,y])=>bar(.035,.035,1.1,x,y,0));
   [[.5,.53],[.5,-.53],[-.5,.53],[-.5,-.53]].forEach(([x,z])=>bar(.035,.95,.035,x,0,z));
   [[.46,.53],[.46,-.53],[-.46,.53],[-.46,-.53]].forEach(([y,z])=>bar(1.03,.035,.035,0,y,z));
-  const handle=new THREE.Mesh(new THREE.TorusGeometry(.2,.02,10,32,Math.PI),new THREE.MeshStandardMaterial({color:0x1a1c1b,roughness:.5}));handle.scale.y=.32;handle.position.y=.46;eng.add(handle);
-  const port=new THREE.Mesh(new THREE.CylinderGeometry(.09,.1,.09,32),new THREE.MeshStandardMaterial({color:0x141615,roughness:.45}));port.rotation.z=Math.PI/2;port.position.set(.54,.06,.3);eng.add(port);
+  const handle=new THREE.Mesh(new THREE.TorusGeometry(.2,.02,10,32,Math.PI),new THREE.MeshStandardMaterial({color:0x1c1c1c,roughness:.5}));handle.scale.y=.32;handle.position.y=.46;eng.add(handle);
+  const port=new THREE.Mesh(new THREE.CylinderGeometry(.09,.1,.09,32),new THREE.MeshStandardMaterial({color:0x161616,roughness:.45}));port.rotation.z=Math.PI/2;port.position.set(.54,.06,.3);eng.add(port);
   eng.scale.setScalar(.5);eng.position.set(0,.24,0);scene.add(eng);
 
   /* Connector and end cap: turned metal parts, the cap finished in a mirror */
   const cyl=(r,h,c,m,ro)=>{const o=new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,64),new THREE.MeshStandardMaterial({color:c,metalness:m,roughness:ro}));o.rotation.z=Math.PI/2;return o};
   const part=(x,list)=>{const g=new THREE.Group();let at=0;list.forEach(([l,r,c,m,ro])=>{const o=cyl(r,l,c,m,ro);o.position.x=at+l/2;g.add(o);at+=l});g.position.set(x,.1,0);scene.add(g)};
-  part(18,[[.12,.13,0xd8dcda,.9,.25],[.03,.17,0xc4c8c6,.9,.25],[.3,.18,0xe6e8e7,.9,.32],[.12,.11,0xcfd3d1,.9,.25],[.2,.17,0x1a1d1b,.3,.5]]);
-  part(34.35,[[.1,.1,0xd8dcda,.9,.25],[.03,.13,0xc4c8c6,.9,.25],[.2,.14,0xe6e8e7,.9,.3],[.2,.14,0xffffff,1,.04]]);
+  part(18,[[.12,.13,0xdbdbdb,.9,.25],[.03,.17,0xc7c7c7,.9,.25],[.3,.18,0xe8e8e8,.9,.32],[.12,.11,0xd2d2d2,.9,.25],[.2,.17,0x1c1c1c,.3,.5]]);
+  part(34.35,[[.1,.1,0xdbdbdb,.9,.25],[.03,.13,0xc7c7c7,.9,.25],[.2,.14,0xe8e8e8,.9,.3],[.2,.14,0xffffff,1,.04]]);
 
   /* Callouts: a dot on each part with a line to its name. They draw in around that part's moment in the scroll and
      fade back out as you pass it, the same whichever way you're scrolling */
