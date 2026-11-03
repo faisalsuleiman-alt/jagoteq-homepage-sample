@@ -4,8 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jagoteq Homepage Sample</title>
-<link rel="icon" href="data:,">
 <meta name="robots" content="noindex">
+<link rel="icon" href="data:,">
+<link rel="preload" as="image" type="image/webp" href="assets/w/hero-1920.webp" imagesrcset="assets/w/hero-828.webp 828w, assets/w/hero-1280.webp 1280w, assets/w/hero-1920.webp 1920w, assets/w/hero-2800.webp 2800w" imagesizes="(max-width:640px) 205vw, (max-width:1040px) 150vw, 100vw" fetchpriority="high">
+<link rel="preload" as="font" type="font/woff2" href="assets/figtree.woff2" crossorigin>
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://www.youtube-nocookie.com">
+<link rel="preconnect" href="https://i.ytimg.com">
 <meta name="description" content="Sample homepage for Jagoteq, prepared by Faisal Suleiman.">
 <style>
 @font-face{font-family:"Figtree";src:url("assets/figtree.woff2") format("woff2");font-weight:300 900;font-style:normal;font-display:swap}
@@ -22,7 +27,7 @@
   --t-1:max(13px,calc(var(--u) * .75));--t-h:calc(var(--t-1) * 1.155);--t1h:calc(var(--u) * 1.54);--t3h:calc(var(--u) * 2.736);--t0:var(--u);--t1:calc(var(--u) * 1.333);--t2:calc(var(--u) * 1.777);--t3:calc(var(--u) * 2.369);--t4:calc(var(--u) * 3.157);--t5:calc(var(--u) * 4.209);
   --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--s6:64px;--s7:96px;--s8:128px;
   --m:clamp(20px,4vw,64px);
-  --ink:#141917;--soft:#4a554e;--tint:#f3f6f3;--night:#101412;--hero:#0c0a14;--part:#141414;--green:#92c83e;--green2:#a6da4f;--go:#86ea3c;--go2:#a2f561;--pale:#c9d3cc;
+  --ink:#141917;--soft:#4a554e;--tint:#f3f6f3;--night:#101412;--hero:#08131f;--phone-x:100%;--part:#141414;--green:#92c83e;--green2:#a6da4f;--go:#86ea3c;--go2:#a2f561;--pale:#c9d3cc;
   --ease:cubic-bezier(.16,1,.3,1);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -69,7 +74,8 @@ h1 .laser{display:inline;background:linear-gradient(90deg,#e23bff,#5a5bff,#19d3f
 .pic>img:first-child{position:absolute;inset:0;object-position:100% 62%}
 .pic .seal{position:absolute;z-index:1;right:var(--m);bottom:var(--s2);width:96px;height:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
 .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--hero),transparent 10%,transparent 88%,var(--hero))}
-@media (min-width:1041px){.pic{container-type:size}.pic>img:first-child{left:auto;right:0;width:min(74cqw,150cqh);height:100%;max-width:none;object-position:100% 60%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 30%);mask-image:linear-gradient(90deg,transparent,#000 30%)}}
+.pic>img:first-child{object-position:100% 50%}
+.pic::after{background:linear-gradient(180deg,var(--hero),transparent 11%,transparent 90%,var(--hero)),linear-gradient(90deg,rgba(8,19,31,.86),rgba(8,19,31,.62) 30%,rgba(8,19,31,0) 52%)}
 .gains{flex:1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s1) var(--s4)}
 .gains li{display:flex;align-items:baseline;gap:6px;color:var(--pale);font-size:var(--t-1);line-height:1.3;white-space:nowrap}
 .gains b{font-size:var(--t1);font-weight:800;line-height:1.1;letter-spacing:-.01em;color:#fff}
@@ -96,8 +102,8 @@ section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction
 .jobs{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
 .jobs figure{min-width:0}
 .jobs .ph{position:relative;aspect-ratio:16/9;max-height:calc(100svh - 300px);width:100%;border-radius:6px;overflow:hidden;background:var(--night)}
-.jobs iframe{position:absolute;left:-10%;top:-10%;width:120%;height:120%;border:0;pointer-events:none}
-.jobs #genesis>img{position:absolute;inset:-1px;z-index:1;width:calc(100% + 2px);height:calc(100% + 2px);max-width:none;transition:opacity .8s}
+.jobs iframe{position:absolute;left:-22.5%;top:-22.5%;width:145%;height:145%;border:0;pointer-events:none}
+.jobs #genesis>img{position:absolute;inset:-1px;z-index:1;width:calc(100% + 2px);height:calc(100% + 2px);max-width:none;transition:opacity .35s}
 .jobs #genesis.live>img{opacity:0}
 .jobs figcaption{margin-top:var(--s2);color:var(--soft)}
 .jobs figcaption img{display:inline-block;width:auto;height:var(--h);margin-right:2px;vertical-align:middle}
@@ -209,6 +215,10 @@ section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction
 .rig.flat .steps li,.rig.flat .steps>p{display:block;opacity:1}
 
 /* Questions */
+.leave{min-height:0;flex-direction:row;align-items:center;justify-content:space-between;gap:var(--s5);padding-top:var(--s6);padding-bottom:var(--s6)}
+.leave p{margin-top:var(--s1);font-size:var(--t1);color:var(--soft)}
+.leave .btn{flex:none}
+@media (max-width:640px){.leave{flex-direction:column;align-items:flex-start;gap:var(--s3)}}
 .faq{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:var(--s6);align-items:start;align-content:center;background:var(--tint)}
 .faq details{background:#fff;border-radius:6px}
 .faq details+details{margin-top:var(--s1)}
@@ -406,7 +416,7 @@ html:not(.js) .tick>div{animation:none}
 
 <div class="fold" id="top">
   <header class="top">
-    <a href="#top" aria-label="Jagoteq home"><img class="logo" src="assets/logo-full-light.png" alt="Jagoteq"></a>
+    <a href="#top" aria-label="Jagoteq home"><img class="logo" src="assets/w/logo.webp" width="77" height="42" alt="Jagoteq"></a>
     <nav aria-label="Main">
       <a href="#products">Products</a>
       <a href="#applications">Applications</a>
@@ -423,7 +433,7 @@ html:not(.js) .tick>div{animation:none}
       <div class="marks"><p><svg aria-hidden="true"><use href="#i-shield"/></svg>FDA certified</p></div>
     </div>
     <div class="pic">
-      <img src="assets/hero-pool.jpg" alt="A backyard pool at dusk with green fiber light running along its whole edge"><img class="seal" src="assets/award.png" alt="Best New Product Award Winner, Special Effects, LDI 2024">
+      <img src="assets/w/hero-1920.webp" srcset="assets/w/hero-828.webp 828w, assets/w/hero-1280.webp 1280w, assets/w/hero-1920.webp 1920w, assets/w/hero-2800.webp 2800w" sizes="(max-width:640px) 205vw, (max-width:1040px) 150vw, 100vw" fetchpriority="high" alt="A two-story luxury home at dusk with cyan fiber light along its roof and magenta fiber light around its pool"><img class="seal" src="assets/w/award.webp" decoding="async" alt="Best New Product Award Winner, Special Effects, LDI 2024">
     </div>
   </div>
   <div class="strip-row">
@@ -438,7 +448,7 @@ html:not(.js) .tick>div{animation:none}
   </div>
   <div class="band" aria-label="Companies Jagoteq has worked with">
     <p>Worked with</p>
-    <div class="tick"><div id="tick"><img src="assets/clients/universal.svg" alt="Universal" style="--h:54px"><img src="assets/clients/disney.svg" alt="Disney" style="--h:44px"><img src="assets/clients/johnson-johnson.svg" alt="Johnson &amp; Johnson" style="--h:16px"><img src="assets/clients/kaiser-permanente.svg" alt="Kaiser Permanente" style="--h:19px"><img src="assets/clients/genesis.svg" alt="Genesis" style="--h:48px"><img src="assets/clients/hayward.svg" alt="Hayward" style="--h:17px"><img src="assets/clients/marriott.svg" alt="Marriott" style="--h:49px"><img src="assets/clients/promedica.svg" alt="ProMedica" style="--h:22px"></div></div>
+    <div class="tick"><div id="tick"><img src="assets/w/universal.webp" alt="Universal" style="--h:54px"><img src="assets/clients/disney.svg" alt="Disney" style="--h:44px"><img src="assets/clients/johnson-johnson.svg" alt="Johnson &amp; Johnson" style="--h:16px"><img src="assets/clients/kaiser-permanente.svg" alt="Kaiser Permanente" style="--h:19px"><img src="assets/clients/genesis.svg" alt="Genesis" style="--h:48px"><img src="assets/clients/hayward.svg" alt="Hayward" style="--h:17px"><img src="assets/clients/marriott.svg" alt="Marriott" style="--h:49px"><img src="assets/clients/promedica.svg" alt="ProMedica" style="--h:22px"></div></div>
   </div>
 </div>
 
@@ -446,19 +456,19 @@ html:not(.js) .tick>div{animation:none}
 <section>
   <div class="intro rise"><h2>Recent projects</h2></div>
   <div class="jobs">
-    <figure class="rise"><div class="ph"><video src="assets/promedica-clip.mp4" poster="assets/promedica-4k.jpg" autoplay muted loop playsinline preload="metadata" aria-label="The ProMedica building in Ohio, outlined in green fiber at night"></video></div><figcaption><img src="assets/clients/promedica.svg" alt="ProMedica" style="--h:21px"> building in Ohio, 302 ft of fiber on three LF40 IP systems</figcaption></figure>
-    <figure class="rise"><div class="ph" id="genesis"><img src="assets/genesis-4k.jpg" alt="A Genesis GV80 under a red line of light, from the commercial" loading="lazy"></div><figcaption><img src="assets/clients/genesis.svg" alt="Genesis" style="--h:30px"> GV80 commercial, 1,200 strand fiber lit by 8 LF120 engines</figcaption></figure>
+    <figure class="rise"><div class="ph"><video poster="assets/w/promedica-poster.webp" muted loop playsinline preload="none" aria-label="The ProMedica building in Ohio, outlined in green fiber at night"><source src="assets/promedica-1080.mp4" type="video/mp4" media="(min-width:641px)"><source src="assets/promedica-720.mp4" type="video/mp4"></video></div><figcaption><img src="assets/clients/promedica.svg" alt="ProMedica" style="--h:21px"> building in Ohio, 302 ft of fiber on three LF40 IP systems</figcaption></figure>
+    <figure class="rise"><div class="ph" id="genesis"><img src="assets/w/genesis-film-960.webp" srcset="assets/w/genesis-film-640.webp 640w, assets/w/genesis-film-960.webp 960w, assets/w/genesis-film-1400.webp 1400w" sizes="(max-width:1040px) 100vw, 50vw" alt="A Genesis GV80 under a red line of light, from the commercial"></div><figcaption><img src="assets/clients/genesis.svg" alt="Genesis" style="--h:30px"> GV80 commercial, 1,200 strand fiber lit by 8 LF120 engines</figcaption></figure>
   </div>
 </section>
 
 <section class="apps" id="applications">
   <div class="intro rise"><h2>Where it goes</h2></div>
   <div class="wall">
-    <figure class="rise"><div class="ph"><img src="assets/event.jpg" alt="A trade show booth hung with thousands of lit fiber strands" loading="lazy"></div><figcaption>Live Event</figcaption></figure>
-    <figure class="rise"><div class="ph"><img src="assets/pool2.jpg" alt="A pool edged in teal fiber at night" loading="lazy"></div><figcaption>Pool and Spa</figcaption></figure>
-    <figure class="rise"><div class="ph"><img src="assets/photos/stairs.jpg" alt="Steps and a building lit in pink and blue" loading="lazy"></div><figcaption>Architectural</figcaption></figure>
-    <figure class="rise"><div class="ph"><img src="assets/landscape.jpg" alt="A palm lit green, with a line of fiber through the garden" loading="lazy"></div><figcaption>Landscape</figcaption></figure>
-    <figure class="rise"><div class="ph"><img src="assets/genesis.jpg" alt="A child reaching for a ribbon of red light, from the Genesis commercial" loading="lazy"></div><figcaption>TV and Film</figcaption></figure>
+    <figure class="rise"><div class="ph"><img src="assets/w/event-1000.webp" srcset="assets/w/event-640.webp 640w, assets/w/event-1000.webp 1000w, assets/w/event-1500.webp 1500w" sizes="(max-width:1040px) 100vw, 50vw" alt="A trade show booth hung with thousands of lit fiber strands" loading="lazy"></div><figcaption>Live Event</figcaption></figure>
+    <figure class="rise"><div class="ph"><img src="assets/w/pool2-1000.webp" srcset="assets/w/pool2-640.webp 640w, assets/w/pool2-1000.webp 1000w, assets/w/pool2-1500.webp 1500w" sizes="(max-width:1040px) 50vw, 50vw" alt="A pool edged in teal fiber at night" loading="lazy"></div><figcaption>Pool and Spa</figcaption></figure>
+    <figure class="rise"><div class="ph"><img src="assets/w/stairs-800.webp" srcset="assets/w/stairs-480.webp 480w, assets/w/stairs-800.webp 800w, assets/w/stairs-1200.webp 1200w" sizes="(max-width:1040px) 50vw, 34vw" alt="Steps and a building lit in pink and blue" loading="lazy"></div><figcaption>Architectural</figcaption></figure>
+    <figure class="rise"><div class="ph"><img src="assets/w/landscape-800.webp" srcset="assets/w/landscape-480.webp 480w, assets/w/landscape-800.webp 800w, assets/w/landscape-1200.webp 1200w" sizes="(max-width:1040px) 50vw, 34vw" alt="A palm lit green, with a line of fiber through the garden" loading="lazy"></div><figcaption>Landscape</figcaption></figure>
+    <figure class="rise"><div class="ph"><img src="assets/w/genesis-child-800.webp" srcset="assets/w/genesis-child-480.webp 480w, assets/w/genesis-child-800.webp 800w, assets/w/genesis-child-1200.webp 1200w" sizes="(max-width:1040px) 50vw, 34vw" alt="A child reaching for a ribbon of red light, from the Genesis commercial" loading="lazy"></div><figcaption>TV and Film</figcaption></figure>
   </div>
 </section>
 
@@ -472,7 +482,7 @@ html:not(.js) .tick>div{animation:none}
       <tr><th scope="row" class="side">Water</th><td>Short circuits in humid places</td><td class="las">100% immersible</td></tr>
       <tr><th scope="row" class="side">Run length</th><td>15 ft per controller</td><td class="las">32 to 100 ft per engine</td></tr>
       <tr><th scope="row" class="side">Long-term cost</th><td>Higher utility bills</td><td class="las">Better cost over time</td></tr>
-      <tr><th scope="row" class="side">After the job</th><td>Usually 1 to 3 uses, then landfill</td><td class="las">Reusable, 100% recyclable</td></tr>
+      <tr><th scope="row" class="side">After the job</th><td>Single use, then landfill</td><td class="las">Reusable, 100% recyclable</td></tr>
     </tbody>
   </table>
 </section>
@@ -481,7 +491,7 @@ html:not(.js) .tick>div{animation:none}
   <div class="intro rise"><h2>Choose the engine that lights your project</h2><p>The engine makes the light, so pick the one that suits where it’s going</p></div>
   <div class="eng">
     <article class="card rise">
-      <div class="ph"><img src="assets/e-lf120.jpg" alt="The LF120 laser engine on a truss, with glowing purple fiber" loading="lazy"></div>
+      <div class="ph"><img src="assets/w/e-lf120-800.webp" srcset="assets/w/e-lf120-480.webp 480w, assets/w/e-lf120-800.webp 800w" sizes="(max-width:1040px) 100vw, 34vw" alt="The LF120 laser engine on a truss, with glowing purple fiber" loading="lazy"></div>
       <div class="tx"><h3>LF120</h3><p class="tag">The big one</p>
         <p class="for">For film sets, live events and indoor spaces</p>
         <ul><li>3x the power of the LF40</li><li>Quiet enough for film sets</li><li>Controlled through DMX or Ethernet</li></ul>
@@ -489,7 +499,7 @@ html:not(.js) .tick>div{animation:none}
         <details><summary>Full specs</summary><dl><dt>Size</dt><dd>10” x 9.5” x 14.75”, 27.5 lbs</dd><dt>Power</dt><dd>12W, 5A</dd><dt>Control</dt><dd>5-pin DMX, e-DMX (Art-Net/sACN)</dd><dt>Color</dt><dd>RGBI, CCT, HSI, effects, presets log</dd><dt>Noise</dt><dd>45dB max</dd></dl></details></div></div>
     </article>
     <article class="card rise">
-      <div class="ph"><img src="assets/e-lf40.jpg" alt="The LF40 laser engine on a truss, with glowing blue fiber" loading="lazy"></div>
+      <div class="ph"><img src="assets/w/e-lf40-800.webp" srcset="assets/w/e-lf40-480.webp 480w, assets/w/e-lf40-800.webp 800w" sizes="(max-width:1040px) 100vw, 34vw" alt="The LF40 laser engine on a truss, with glowing blue fiber" loading="lazy"></div>
       <div class="tx"><h3>LF40</h3><p class="tag">The compact one</p>
         <p class="for">For smaller jobs you can carry</p>
         <ul><li>Just 3 lbs</li><li>Runs on a 12V battery or wall power</li><li>Quiet enough for film sets</li></ul>
@@ -497,7 +507,7 @@ html:not(.js) .tick>div{animation:none}
         <details><summary>Full specs</summary><dl><dt>Size</dt><dd>7.5” x 4” x 7”, 3 lbs</dd><dt>Power</dt><dd>4W, 2A</dd><dt>Control</dt><dd>5-pin DMX, e-DMX. W-DMX and Bluetooth on request</dd><dt>Color</dt><dd>RGBI, CCT, HSI, effects, presets log</dd><dt>Noise</dt><dd>45dB max</dd></dl></details></div></div>
     </article>
     <article class="card rise">
-      <div class="ph"><img src="assets/e-lf40ip.jpg" alt="The LF40 IP laser engine in its water-resistant housing, with glowing pink fiber" loading="lazy"></div>
+      <div class="ph"><img src="assets/w/e-lf40ip-800.webp" srcset="assets/w/e-lf40ip-480.webp 480w, assets/w/e-lf40ip-800.webp 800w" sizes="(max-width:1040px) 100vw, 34vw" alt="The LF40 IP laser engine in its water-resistant housing, with glowing pink fiber" loading="lazy"></div>
       <div class="tx"><h3>LF40 IP</h3><p class="tag">The tough one</p>
         <p class="for">Weather-resistant for outdoor jobs</p>
         <ul><li>Water-resistant housing</li><li>Same performance as the LF40</li><li>Used on the ProMedica building</li></ul>
@@ -536,6 +546,11 @@ html:not(.js) .tick>div{animation:none}
   </div>
 </section>
 
+<section class="leave">
+  <div class="rise"><h2>Leave the implementation to us</h2><p>We install it and bring your vision to life</p></div>
+  <a class="btn rise" href="#quote" id="consult">Book a consult</a>
+</section>
+
 <section class="faq" id="questions">
   <h2 class="rise">Common questions</h2>
   <div class="rise">
@@ -560,7 +575,7 @@ html:not(.js) .tick>div{animation:none}
     </label>
     <label class="full">What do you need?<textarea name="details" id="det" placeholder="What you’re lighting, how long the run is, and when you need it"></textarea></label>
     <button class="btn full" type="submit">Request a Quote</button>
-    <small class="full">This is a sample page, so the form doesn't send</small>
+    <small class="full">This is a sample page, so the form doesn’t send</small>
   </form>
 </section>
 </main>
@@ -571,7 +586,7 @@ html:not(.js) .tick>div{animation:none}
 const $=id=>document.getElementById(id);
 /* The logo row, four times over so it fills any screen and loops. Each logo has its own height so they look a similar size, and the same gap */
 const L=[['universal','Universal',54],['disney','Disney',44],['johnson-johnson','Johnson & Johnson',16],['kaiser-permanente','Kaiser Permanente',19],['genesis','Genesis',48],['hayward','Hayward',17],['marriott','Marriott',49],['promedica','ProMedica',22]];
-const cell=([f,n,h],d)=>`<img src="assets/clients/${f}.svg" alt="${d?'':n}" style="--h:${h}px"${d?' aria-hidden="true"':''}>`;
+const cell=([f,n,h],d)=>`<img src="assets/${f==='universal'?'w/universal.webp':'clients/'+f+'.svg'}" alt="${d?'':n}" style="--h:${h}px"${d?' aria-hidden="true"':''}>`;
 $('tick').innerHTML=L.map(l=>cell(l)).join('')+[1,2,3].map(()=>L.map(l=>cell(l,1)).join('')).join('');
 
 /* Jagoteq's own compatibility chart, Product Catalog 7. one and two are the longest run in feet on 1 or 2 engines:
@@ -613,24 +628,26 @@ read();
 const addLine=x=>{const d=$('det');if(!d.value.includes(x))d.value=x+'\n'+d.value};
 let lastSetup='';
 $('carry').addEventListener('click',()=>{const d=$('det'),x='Setup from the site: '+setup;if(lastSetup&&d.value.includes('Setup from the site:'))d.value=d.value.replace(/^Setup from the site:.*$/m,x);else addLine(x);lastSetup=x;$('qf').elements.application.value=WHAT[$('what').value][3]});
+$('consult').addEventListener('click',()=>addLine('I’d like to book a consult'));
 document.querySelectorAll('[data-engine]').forEach(a=>a.addEventListener('click',()=>addLine('I’d like a quote for the '+a.dataset.engine)));
 /* The rental answer opens however a visitor gets to it */
 const rentOpen=()=>{if(location.hash==='#rent')$('rent').open=true};addEventListener('hashchange',rentOpen);rentOpen();
 document.querySelector('a[href="#rent"]').addEventListener('click',()=>{$('rent').open=true});
 
 const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
-if(calm){const v=document.querySelector('.jobs video');v.removeAttribute('autoplay');v.removeAttribute('loop');v.pause();v.load()}
+if(!calm){const v=document.querySelector('.jobs video'),go=()=>{v.preload='auto';v.play().catch(()=>{})};document.readyState==='complete'?go():addEventListener('load',go,{once:true})}
 
-/* The Genesis film plays in its box. The still covers YouTube's own buttons and title until they fade, and comes back
-   before the end screen, so the film loops with no player showing. YouTube needs a web address, so an opened file keeps the still */
+/* The Genesis film plays in its box. The player is enlarged so YouTube's own title and buttons sit outside the box, which lets the still
+   drop the moment the film runs. It comes back before the end screen, so the film loops with no player showing. YouTube needs a web address, so an opened file keeps the still */
 if(!calm&&location.protocol.startsWith('http')){const box=$('genesis'),host=document.createElement('div');host.id='gfilm';box.prepend(host);
- let timer,turning=false;const show=()=>{clearTimeout(timer);timer=setTimeout(()=>box.classList.add('live'),3800)};
+ let timer,turning=false;const show=()=>{clearTimeout(timer);timer=setTimeout(()=>box.classList.add('live'),200)};
  window.onYouTubeIframeAPIReady=()=>{const p=new YT.Player('gfilm',{videoId:'ZA-BQZFrXyE',host:'https://www.youtube-nocookie.com',playerVars:{autoplay:1,mute:1,controls:0,disablekb:1,fs:0,iv_load_policy:3,cc_load_policy:0,playsinline:1,rel:0,origin:location.origin},events:{
    onReady:e=>{e.target.mute();e.target.playVideo()},
    onStateChange:e=>{if(e.data===YT.PlayerState.PLAYING){try{p.unloadModule('captions');p.unloadModule('cc')}catch(_){}if(!box.classList.contains('live'))show()}else{clearTimeout(timer);box.classList.remove('live')}}}});
   const f=p.getIframe();f.tabIndex=-1;f.inert=true;f.setAttribute('aria-hidden','true');
   window.__film=p;setInterval(()=>{if(!p.getDuration||!p.getDuration())return;if(!turning&&p.getDuration()-p.getCurrentTime()<10){turning=true;clearTimeout(timer);box.classList.remove('live');setTimeout(()=>{p.seekTo(0,true);turning=false;show()},900)}},500)};
- const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';document.head.append(s)}
+ const yt=()=>{const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';document.head.append(s)};
+ document.readyState==='complete'?yt():addEventListener('load',yt,{once:true})}
 
 /* Smooth jumps for the page's own links. This lives here and not in the CSS, because CSS smooth scrolling breaks the scroll pin */
 /* A jump finishes when the browser says the scroll has ended, then corrects any last gap. Scrolling by hand cancels it */
@@ -650,9 +667,8 @@ $('qf').addEventListener('submit',e=>e.preventDefault());
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.rise').forEach(el=>io.observe(el));
 </script>
-<script src="assets/lib/three.min.js"></script>
-<script src="assets/lib/gsap.min.js"></script>
-<script src="assets/lib/ScrollTrigger.min.js"></script>
-<script src="assets/rig.js"></script>
+<script defer src="assets/lib/gsap.min.js"></script>
+<script defer src="assets/lib/ScrollTrigger.min.js"></script>
+<script defer src="assets/rig.js"></script>
 </body>
 </html>

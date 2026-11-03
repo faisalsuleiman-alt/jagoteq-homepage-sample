@@ -5,8 +5,24 @@
   const rig=document.getElementById('rig'),canvas=document.getElementById('scene');
   if(!canvas)return;
   const flat=()=>rig.classList.add('flat');
-  if(!window.THREE)return flat();
-  let gl;try{gl=new THREE.WebGLRenderer({canvas,antialias:true})}catch(e){return flat()}
+  const probe=document.createElement('canvas');
+  if(!(probe.getContext('webgl2')||probe.getContext('webgl')))return flat();
+  rig.classList.remove('flat');
+
+  /* The step list works from the start. The 3D picture is built only as a visitor gets near it, so it never holds up the first screen */
+  const list=[...document.querySelectorAll('#steps li')],narrow=matchMedia('(max-width:1040px)'),still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  let P=still?1:0,draw=null,pin=null,dead=false;
+  const giveUp=()=>{dead=true;if(pin)pin.kill(true);flat()};
+  function place(t){ /* t runs 0 to 1 across all the shots */
+    P=t;
+    const step=t>=.86&&(!narrow.matches||still)?-1:Math.min(4,Math.round(t/.8*4));
+    list.forEach((li,j)=>li.classList.toggle('on',step<0||j===step));
+    if(draw)draw(t);
+  }
+  place(P);window.__rig={place};
+
+  function build(){
+  let gl;try{gl=new THREE.WebGLRenderer({canvas,antialias:true})}catch(e){return giveUp()}
   gl.setPixelRatio(Math.min(devicePixelRatio,2));gl.setClearColor(0x0d1110);
   gl.toneMapping=THREE.ACESFilmicToneMapping;gl.toneMappingExposure=1.05;
   const scene=new THREE.Scene();scene.fog=new THREE.Fog(0x0d1110,140,280);
@@ -109,21 +125,17 @@
     {p:V(35.9,.5,1.15),l:V(34.6,.12,0)},
     {p:V(17.5,30,40),l:V(17.5,0,0)}];
   const now={p:shots[0].p.clone(),l:shots[0].l.clone()};
-  const list=[...document.querySelectorAll('#steps li')],narrow=matchMedia('(max-width:1040px)');
-  function place(t){ /* t runs 0 to 1 across all the shots */
+  draw=t=>{
     T=t;
     const n=shots.length-1,c=cam.aspect<1&&t<.2?Math.max(0,(t-.09)/.11*.2):t,f=Math.min(n-.0001,c*n),i=Math.floor(f),k=f-i,e=k*k*(3-2*k);
     now.p.lerpVectors(shots[i].p,shots[i+1].p,e);now.l.lerpVectors(shots[i].l,shots[i+1].l,e);
-    const step=t>=.86&&(!narrow.matches||still)?-1:Math.min(4,Math.round(t/.8*4));
-    list.forEach((li,j)=>li.classList.toggle('on',step<0||j===step));
     ends.forEach(s=>{s.visible=t>=.92});
     spanBars.visible=spanLabel.visible=(t>=.1&&t<=.3)||t>=.92;
-  }
+  };
   function size(){const r=canvas.parentElement.getBoundingClientRect();cw=r.width;ch=r.height;gl.setSize(r.width,r.height,false);cam.aspect=r.width/Math.max(1,r.height);cam.updateProjectionMatrix();
     const half=Math.atan(Math.tan(cam.fov*Math.PI/360)*cam.aspect),d=24/Math.tan(half),k=Math.min(1,cam.aspect);shots[5].p.set(17.5,d*.85,d*.55);labels.forEach(s=>s.scale.set(.2*k,.038*k,1));
     cam.position.copy(now.p);cam.lookAt(now.l);gl.render(scene,cam);tag()}
-  rig.classList.remove('flat');new ResizeObserver(size).observe(canvas.parentElement);size();
-  const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  new ResizeObserver(size).observe(canvas.parentElement);size();
   let inView=true;
   new IntersectionObserver(e=>{inView=e[e.length-1].isIntersecting}).observe(canvas);
   function frame(ms){requestAnimationFrame(frame);if(!inView)return;
@@ -131,15 +143,24 @@
     halos.forEach(m=>m.uniforms.c.value.copy(c));wash.material.color.copy(c);fill.color.copy(c);
     pulses.forEach(p=>{const u=(s*.12+p.userData.o)%1;p.position.copy(darkPath.getPointAt(u));p.position.y+=.03});
     cam.position.copy(now.p);cam.lookAt(now.l);gl.render(scene,cam);tag()}
-  place(still?1:0);
+  draw(P);
   requestAnimationFrame(frame);
   if(document.fonts)document.fonts.load('800 52px Figtree').then(()=>draws.forEach(d=>d()));
-  window.__rig={place};
+  }
+
+  /* Fetch the 3D library once the page has settled, and build the picture when the section is close */
+  let near=false,got=false,asked=false;
+  const go=()=>{if(near&&got&&!draw&&!dead)build()};
+  const fetchLib=()=>{if(asked)return;asked=true;const s=document.createElement('script');s.src='assets/lib/three.min.js';s.onload=()=>{got=true;go()};s.onerror=giveUp;document.head.append(s)};
+  new IntersectionObserver((e,o)=>{if(e[e.length-1].isIntersecting){near=true;o.disconnect();fetchLib();go()}},{rootMargin:'120% 0px'}).observe(rig);
+  const idle=()=>{window.requestIdleCallback?requestIdleCallback(fetchLib,{timeout:3000}):setTimeout(fetchLib,1500)};
+  document.readyState==='complete'?idle():addEventListener('load',idle,{once:true});
+
   if(still)return;
-  if(!window.gsap||!window.ScrollTrigger)return flat();
+  if(!window.gsap||!window.ScrollTrigger)return giveUp();
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ignoreMobileResize:true});
-  const pin=ScrollTrigger.create({trigger:'#rig',start:'top top',end:'+=240%',pin:true,scrub:true,onUpdate:s=>place(s.progress)});
+  pin=ScrollTrigger.create({trigger:'#rig',start:'top top',end:'+=240%',pin:true,scrub:true,onUpdate:s=>place(s.progress)});
   /* A refresh remeasures the page by scrolling to the top and back, so the pin keeps its place and a jump in progress finishes */
   /* The reader's place is saved on every scroll and frozen once a phone has turned, because by then the browser has already moved the page */
   let keep=null,mark=null,ready=false,saved=null;
@@ -147,7 +168,7 @@
   const spotNow=()=>{const y=scrollY;if(y>=pin.start&&y<=pin.end)return {keep:pin.end>pin.start?(y-pin.start)/(pin.end-pin.start):0,mark:null};const s=[...document.querySelectorAll('.fold,main>section,footer')].filter(e=>e.getBoundingClientRect().top<=1).pop();return {keep:null,mark:s?{el:s,off:-s.getBoundingClientRect().top/s.offsetHeight}:null}};
   addEventListener('scroll',()=>{if(ready&&tall.matches===was&&!ScrollTrigger.isRefreshing)saved=spotNow()},{passive:true});
   ScrollTrigger.addEventListener('refreshInit',()=>{const r=ready?(tall.matches!==was&&saved||spotNow()):{keep:pin.isActive?pin.progress:null,mark:null};keep=r.keep;mark=r.mark;was=tall.matches});
-  ScrollTrigger.addEventListener('refresh',()=>{if(window.jumpTo)window.jumpTo.scrollIntoView({behavior:'smooth',block:'start'});else if(keep!==null)scrollTo(0,pin.start+keep*(pin.end-pin.start));else if(mark)scrollTo(0,scrollY+mark.el.getBoundingClientRect().top+mark.off*mark.el.offsetHeight);keep=mark=null;ready=true;place(T)});
+  ScrollTrigger.addEventListener('refresh',()=>{if(window.jumpTo)window.jumpTo.scrollIntoView({behavior:'smooth',block:'start'});else if(keep!==null)scrollTo(0,pin.start+keep*(pin.end-pin.start));else if(mark)scrollTo(0,scrollY+mark.el.getBoundingClientRect().top+mark.off*mark.el.offsetHeight);keep=mark=null;ready=true;place(P)});
   /* A link straight to a section lands on it once the pin has been measured */
   const land=()=>{ScrollTrigger.removeEventListener('refresh',land);const el=location.hash&&document.querySelector(location.hash);if(el)el.scrollIntoView()};ScrollTrigger.addEventListener('refresh',land);
   /* A picture loading late can move where the pin must start. Anything that only grows the page below it needs no refresh */
