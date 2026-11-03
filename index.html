@@ -137,26 +137,30 @@ section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction
 .show{background:var(--tint)}
 .show .intro{max-width:none}
 .eng{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
-.card{position:relative;display:flex;flex-direction:column;background:var(--night);color:#fff;border-radius:10px;overflow:hidden}
+.card{position:relative;display:flex;flex-direction:column;background:#fff;color:var(--ink);border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(16,20,18,.06),0 10px 28px rgba(16,20,18,.06)}
 .card .ph{flex:none;height:clamp(120px,26svh,280px);background:#000}
-.card .tx{flex:1;display:flex;flex-direction:column;gap:var(--s1);padding:var(--s3)}
-.card h3{font-size:var(--t-h);font-weight:600;line-height:1.2;letter-spacing:0;color:var(--pale)}
-.card .tag{font-size:var(--t2);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:var(--green2)}
-.card p.for{line-height:1.35;font-weight:500;color:#fff}
-.card ul{margin-bottom:var(--s2)}
-.card ul li{font-size:var(--t-h);line-height:1.45;color:var(--pale)}
+.card .tx{flex:1;display:flex;flex-direction:column;gap:var(--s2);padding:var(--s3)}
+.card .who{display:flex;align-items:baseline;justify-content:space-between;gap:var(--s2)}
+.card h3{font-size:var(--t-h);font-weight:600;line-height:1.2;letter-spacing:0;color:var(--soft);white-space:nowrap}
+.card .tag{font-size:var(--t2);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:#4f7a14}
+.card p.for{line-height:1.35;font-weight:500;color:var(--ink);margin-top:calc(var(--s1) * -1)}
+.card .spec{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);padding:var(--s2) 0;border-top:1px solid rgba(20,25,23,.1);border-bottom:1px solid rgba(20,25,23,.1)}
+.card ul{min-width:0}
+.card ul li{font-size:var(--t-h);line-height:1.5;color:var(--soft)}
+.card .won{flex:none;width:84px;height:auto;padding:5px;border-radius:50%;background:var(--night)}
 .card .row{margin-top:auto;display:flex;flex-wrap:wrap;gap:var(--s1)}
 .card .row .btn{flex:999 0 auto}
 .card .row details{flex:1 0 auto}
 .card .btn{min-height:44px;padding:0 var(--s2);gap:.28em;white-space:nowrap}
 .card summary{display:flex;align-items:center;justify-content:center;gap:var(--s1);min-height:44px;padding:0 var(--s2);font-weight:800;white-space:nowrap;list-style:none;cursor:pointer;border-radius:6px;box-shadow:inset 0 0 0 2px #fff;transition:background .2s}
 .card summary::-webkit-details-marker{display:none}
-.card summary::after{content:'+';font-size:var(--t1);line-height:1;color:var(--green2)}
-.card summary:hover{background:rgba(255,255,255,.14)}
-.card details[open] summary{background:#fff;color:var(--ink)}
-.card details[open] summary::after{content:'×';color:var(--ink)}
+.card summary::after{content:'+';font-size:var(--t1);line-height:1;color:#4f7a14}
+.card summary:hover{background:rgba(20,25,23,.06)}
+.card details[open] summary{background:var(--ink);color:#fff}
+.card details[open] summary::after{content:'×';color:#fff}
 .card dl{position:absolute;inset:0 0 calc(var(--s3) + 44px + var(--s1)) 0;z-index:2;display:grid;grid-template-columns:auto 1fr;align-content:center;gap:var(--s1) var(--s3);padding:var(--s4);background:var(--night)}
 .card dt{color:var(--pale)}
+.card dd{color:#fff}
 
 /* Find your setup: one sentence, the real thicknesses to choose from, a slider for the length, one answer */
 .say-it{font-size:var(--t1);font-weight:500;line-height:2}
@@ -252,7 +256,9 @@ footer{padding:var(--s5) var(--m);background:var(--night);color:var(--pale);font
   .vs th,.vs td{padding-top:var(--s1);padding-bottom:var(--s1)}
   .apps{padding-top:var(--s3)}
   .card .tx{padding:var(--s2) var(--s3)}
-  .card ul{margin-bottom:var(--s1)}
+  .card .tx{gap:var(--s1)}
+  .card .spec{padding:var(--s1) 0}
+  .card .won{width:64px;padding:4px}
   .card dl{bottom:calc(var(--s2) + 44px + var(--s1))}
   .say-it{line-height:1.8}
   .looks .tile{height:40px}
@@ -492,25 +498,25 @@ html:not(.js) .tick>div{animation:none}
   <div class="eng">
     <article class="card rise">
       <div class="ph"><img src="assets/w/e-lf120-800.webp" srcset="assets/w/e-lf120-480.webp 480w, assets/w/e-lf120-800.webp 800w" sizes="(max-width:1040px) 100vw, 34vw" alt="The LF120 laser engine on a truss, with glowing purple fiber" loading="lazy"></div>
-      <div class="tx"><h3>LF120</h3><p class="tag">The big one</p>
+      <div class="tx"><div class="who"><p class="tag">The big one</p><h3>LF120</h3></div>
         <p class="for">For film sets, live events and indoor spaces</p>
-        <ul><li>3x the power of the LF40</li><li>Quiet enough for film sets</li><li>Controlled through DMX or Ethernet</li></ul>
+        <div class="spec"><ul><li>3x the power of the LF40</li><li>Quiet enough for film sets</li><li>Controlled through DMX or Ethernet</li></ul><img class="won" src="assets/w/award.webp" alt="Best New Product, Special Effects, LDI 2024" loading="lazy"></div>
         <div class="row"><a class="btn" href="#quote" data-engine="LF120">Quote <span>the LF120</span></a>
         <details><summary>Full specs</summary><dl><dt>Size</dt><dd>10” x 9.5” x 14.75”, 27.5 lbs</dd><dt>Power</dt><dd>12W, 5A</dd><dt>Control</dt><dd>5-pin DMX, e-DMX (Art-Net/sACN)</dd><dt>Color</dt><dd>RGBI, CCT, HSI, effects, presets log</dd><dt>Noise</dt><dd>45dB max</dd></dl></details></div></div>
     </article>
     <article class="card rise">
       <div class="ph"><img src="assets/w/e-lf40-800.webp" srcset="assets/w/e-lf40-480.webp 480w, assets/w/e-lf40-800.webp 800w" sizes="(max-width:1040px) 100vw, 34vw" alt="The LF40 laser engine on a truss, with glowing blue fiber" loading="lazy"></div>
-      <div class="tx"><h3>LF40</h3><p class="tag">The compact one</p>
+      <div class="tx"><div class="who"><p class="tag">The compact one</p><h3>LF40</h3></div>
         <p class="for">For smaller jobs you can carry</p>
-        <ul><li>Just 3 lbs</li><li>Runs on a 12V battery or wall power</li><li>Quiet enough for film sets</li></ul>
+        <div class="spec"><ul><li>Just 3 lbs</li><li>Runs on a 12V battery or wall power</li><li>Quiet enough for film sets</li></ul><img class="won" src="assets/w/award.webp" alt="Best New Product, Special Effects, LDI 2024" loading="lazy"></div>
         <div class="row"><a class="btn" href="#quote" data-engine="LF40">Quote <span>the LF40</span></a>
         <details><summary>Full specs</summary><dl><dt>Size</dt><dd>7.5” x 4” x 7”, 3 lbs</dd><dt>Power</dt><dd>4W, 2A</dd><dt>Control</dt><dd>5-pin DMX, e-DMX. W-DMX and Bluetooth on request</dd><dt>Color</dt><dd>RGBI, CCT, HSI, effects, presets log</dd><dt>Noise</dt><dd>45dB max</dd></dl></details></div></div>
     </article>
     <article class="card rise">
       <div class="ph"><img src="assets/w/e-lf40ip-800.webp" srcset="assets/w/e-lf40ip-480.webp 480w, assets/w/e-lf40ip-800.webp 800w" sizes="(max-width:1040px) 100vw, 34vw" alt="The LF40 IP laser engine in its water-resistant housing, with glowing pink fiber" loading="lazy"></div>
-      <div class="tx"><h3>LF40 IP</h3><p class="tag">The tough one</p>
+      <div class="tx"><div class="who"><p class="tag">The tough one</p><h3>LF40 IP</h3></div>
         <p class="for">Weather-resistant for outdoor jobs</p>
-        <ul><li>Water-resistant housing</li><li>Same performance as the LF40</li><li>Used on the ProMedica building</li></ul>
+        <div class="spec"><ul><li>Water-resistant housing</li><li>Same performance as the LF40</li><li>Used on the ProMedica building</li></ul></div>
         <div class="row"><a class="btn" href="#quote" data-engine="LF40 IP">Quote <span>the LF40 IP</span></a>
         <details><summary>Full specs</summary><dl><dt>Size</dt><dd>7.5” x 4” x 7”, 3 lbs</dd><dt>Power</dt><dd>4W, 2A</dd><dt>Control</dt><dd>5-pin DMX, Art-Net/sACN. Bluetooth or CRMX on request</dd><dt>Color</dt><dd>RGBI, CCT, HSI, effects, presets log</dd><dt>Noise</dt><dd>45dB max</dd></dl></details></div></div>
     </article>
