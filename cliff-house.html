@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jagoteq Homepage Sample</title>
+<link rel="icon" href="data:,">
+<meta name="robots" content="noindex">
+<meta name="description" content="Sample homepage for Jagoteq, prepared by Faisal Suleiman.">
+<style>
+@font-face{font-family:"Figtree";src:url("assets/figtree.woff2") format("woff2");font-weight:300 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Figtree";src:url("assets/figtree-ext.woff2") format("woff2");font-weight:300 900;font-style:normal;font-display:swap;unicode-range:U+0100-02BA}
+
+/* TYPE SCALE. One base, one ratio, no other sizes on this page.
+   Base --u is 18px on a 1440 screen, 16px on a phone, 20px on a large screen. Ratio 1.333. Small print never goes under 13px.
+   --t-1 small print  --t-h top bar, half a step up  --t0 body, buttons  --t1 lead sentence, card names
+   --t2 big facts and card headings  --t3 headings on phones  --t4 section headings  --t5 main headline
+   --t3h and --t1h are half a step up, for the front page headline and the line under it.
+   SPACING. Steps of 8: --s1 8, --s2 16, --s3 24, --s4 32, --s5 48, --s6 64, --s7 96, --s8 128. */
+:root{
+  --u:clamp(16px,.6vw + 9.4px,20px);
+  --t-1:max(13px,calc(var(--u) * .75));--t-h:calc(var(--t-1) * 1.155);--t1h:calc(var(--u) * 1.54);--t3h:calc(var(--u) * 2.736);--t0:var(--u);--t1:calc(var(--u) * 1.333);--t2:calc(var(--u) * 1.777);--t3:calc(var(--u) * 2.369);--t4:calc(var(--u) * 3.157);--t5:calc(var(--u) * 4.209);
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--s6:64px;--s7:96px;--s8:128px;
+  --m:clamp(20px,4vw,64px);
+  --ink:#141917;--soft:#4a554e;--tint:#f3f6f3;--night:#101412;--hero:#0c1228;--phone-x:100%;--part:#141414;--green:#92c83e;--green2:#a6da4f;--go:#86ea3c;--go2:#a2f561;--pale:#c9d3cc;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{font-family:"Figtree",system-ui,sans-serif;background:#fff;color:var(--ink);font-size:var(--t0);line-height:1.5;font-variant-numeric:lining-nums;overflow-x:hidden}
+img,video{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit}
+ul,ol{list-style:none}
+h1,h2,h3{font-weight:800;line-height:1.05;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:var(--t4)}
+h3{font-size:var(--t2);letter-spacing:-.02em}
+:focus-visible{outline:3px solid var(--ring,var(--green));outline-offset:3px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:inherit;text-align:center;min-height:56px;padding:0 var(--s4);background:var(--go);color:var(--ink);font-size:var(--t0);font-weight:800;text-decoration:none;border:0;border-radius:6px;cursor:pointer;transition:background .2s,transform .25s var(--ease)}
+.btn:hover{background:var(--go2);transform:translateY(-2px)}
+.btn:active{transform:none}
+.btn.ghost{background:none;color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,.28);text-decoration-thickness:1px;text-underline-offset:7px;transition:text-decoration-color .2s}
+.btn.ghost:hover{background:none;transform:none;text-decoration-color:#fff}
+
+/* THE FIRST SCREEN. A thin top bar, one big hero image, a plain row of benefits, logos on white. */
+.fold{position:relative;z-index:2;min-height:100svh;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto auto;background:linear-gradient(var(--hero) calc(100% - 28px),transparent calc(100% - 28px));color:#fff}
+.top{display:flex;align-items:center;gap:var(--s4);padding:6px var(--m)}
+.top .logo{height:42px;width:auto;flex:none;object-fit:contain}
+.top nav{display:flex;gap:var(--s4);margin-left:auto}
+.top nav a{font-size:var(--t-h);font-weight:600;text-decoration:none;white-space:nowrap}
+.top nav a:hover{color:var(--green)}
+.top nav a.go{font-weight:800;color:var(--go)}
+.top nav a.go:hover{color:var(--go2)}
+.stage{position:relative;display:flex;align-items:center;min-height:0;overflow:hidden}
+.say{position:relative;z-index:1;width:min(40%,600px);padding:var(--s4) 0 var(--s4) var(--m)}
+h1{font-size:var(--t3h);line-height:1.06;letter-spacing:-.03em;text-wrap:initial}
+h1 span{display:block}
+h1 .next{margin-top:var(--s1);font-size:var(--t1h);line-height:1.15;letter-spacing:-.015em;color:var(--pale);font-weight:600}
+h1 .laser{display:inline;background:linear-gradient(90deg,#e23bff,#5a5bff,#19d3ff,#54ff9f,#e23bff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 9s linear infinite}
+@keyframes flow{to{background-position:-300% 0}}
+.acts{margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center}
+.acts .btn{min-height:44px;padding:0 var(--s3)}
+.acts .ghost{padding:0 var(--s1)}
+.strip-row{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);padding:var(--s1) var(--m) var(--s3)}
+.marks{display:flex;align-items:center;gap:var(--s2);margin-top:var(--s3)}
+.marks p{display:flex;align-items:center;gap:var(--s1);font-size:var(--t-h);font-weight:600;line-height:1.2;white-space:nowrap}
+.marks svg{flex:none;width:26px;height:26px;fill:none;stroke:var(--green2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pic{position:absolute;inset:0}
+.pic>img:first-child{position:absolute;inset:0;object-position:100% 62%}
+.pic .seal{position:absolute;z-index:1;right:var(--m);bottom:var(--s2);width:96px;height:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
+.pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--hero),transparent 10%,transparent 88%,var(--hero))}
+.pic>img:first-child{object-position:100% 50%}
+.pic::after{background:linear-gradient(180deg,var(--hero),transparent 10%,transparent 90%,var(--hero)),linear-gradient(90deg,rgba(12,18,40,.7),rgba(12,18,40,.38) 34%,transparent 54%)}
+.gains{flex:1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s1) var(--s4)}
+.gains li{display:flex;align-items:baseline;gap:6px;color:var(--pale);font-size:var(--t-1);line-height:1.3;white-space:nowrap}
+.gains b{font-size:var(--t1);font-weight:800;line-height:1.1;letter-spacing:-.01em;color:#fff}
+.gains svg{flex:none;align-self:center;width:22px;height:22px;margin-right:2px;fill:none;stroke:var(--green2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* The logo banner on white, moving left to right. Every logo has the same gap either side.
+   "Worked with" starts at the left, with the logos coming out to its right. */
+.band{--g:clamp(56px,7vw,112px);background:#fff;color:var(--ink);padding:var(--s1) 0;overflow:hidden;border-radius:0 0 28px 28px;box-shadow:0 14px 28px rgba(16,20,18,.1)}
+.band>p{font-size:var(--t-h);font-weight:500;color:var(--soft);white-space:nowrap}
+.band{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center}
+.band>p{padding:0 var(--s5) 0 var(--m)}
+.tick{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 88px,#000 calc(100% - 88px),transparent);mask-image:linear-gradient(90deg,transparent,#000 88px,#000 calc(100% - 88px),transparent)}
+.tick>div{display:flex;align-items:center;gap:var(--g);padding-right:var(--g);width:max-content;animation:roll 42s linear infinite}
+@keyframes roll{from{transform:translateX(-25%)}to{transform:translateX(0)}}
+.tick img{flex:none;width:auto;height:var(--h);object-fit:contain}
+
+/* Every section fills one screen, with its title and everything it says in view */
+section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction:column;justify-content:center}
+.intro{max-width:52rem;margin-bottom:var(--s5)}
+.intro p{margin-top:var(--s2);font-size:var(--t1);line-height:1.35;color:var(--soft)}
+.dark .intro p{color:var(--pale)}
+
+/* Projects: moving pictures in the boxes */
+.jobs{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
+.jobs figure{min-width:0}
+.jobs .ph{position:relative;aspect-ratio:16/9;max-height:calc(100svh - 300px);width:100%;border-radius:6px;overflow:hidden;background:var(--night)}
+.jobs iframe{position:absolute;left:-10%;top:-10%;width:120%;height:120%;border:0;pointer-events:none}
+.jobs #genesis>img{position:absolute;inset:-1px;z-index:1;width:calc(100% + 2px);height:calc(100% + 2px);max-width:none;transition:opacity .8s}
+.jobs #genesis.live>img{opacity:0}
+.jobs figcaption{margin-top:var(--s2);color:var(--soft)}
+.jobs figcaption img{display:inline-block;width:auto;height:var(--h);margin-right:2px;vertical-align:middle}
+
+/* Where it goes: two big pictures, then three, with the name under each, all on one screen */
+.apps{height:100svh;min-height:520px;padding:var(--s5) 0 0;display:grid;grid-template-rows:auto minmax(0,1fr);justify-content:stretch}
+.apps .intro{padding:0 var(--m);margin-bottom:var(--s3)}
+.wall{display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:1fr 1fr;gap:var(--s1);min-height:0}
+.wall figure{grid-column:span 2;min-width:0;min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto;background:var(--night)}
+.wall figure:nth-child(1),.wall figure:nth-child(2){grid-column:span 3}
+.wall .ph{position:relative;overflow:hidden;min-height:0}
+.wall img{position:absolute;inset:0}
+.wall figcaption{padding:var(--s1) var(--s3);font-size:var(--t1);font-weight:800;line-height:1.2;color:#fff}
+
+/* Why lasers beat LED: the catalog's own comparison, one row at a time, in one light weight */
+.why{background:var(--night);color:#fff}
+.vs{width:100%;border-collapse:collapse;table-layout:fixed}
+.vs th,.vs td{padding:var(--s2) var(--s3) var(--s2) 0;text-align:left;font-size:var(--t1);font-weight:400;line-height:1.3;vertical-align:middle}
+.vs thead th{padding-top:0;font-size:var(--t0);font-weight:600;color:var(--pale)}
+.vs thead .las{color:#fff}
+.vs .side{width:24%;font-size:var(--t0);color:var(--pale)}
+.vs tbody td{color:#8e9b94}
+.vs tbody td.las{color:#fff}
+.vs tbody tr>*{border-top:1px solid rgba(255,255,255,.1)}
+.vs th:last-child,.vs td:last-child{padding-right:0}
+.strip{display:block;height:6px;margin-bottom:var(--s2);border-radius:3px}
+.strip.dots{background:radial-gradient(circle at center,#ffe9dc 0 2.5px,rgba(255,205,180,.3) 4px,transparent 8px) left center/24px 100% repeat-x}
+.strip.beam{background:linear-gradient(90deg,#e23bff,#5a5bff,#19d3ff,#5a5bff,#e23bff) 0 0/300% 100%;box-shadow:0 0 12px rgba(90,91,255,.7);animation:flow 12s linear infinite}
+
+/* Engines: a real photo of each on stage. Full specs is a button of its own and opens over the card, so the section never grows */
+.show{background:var(--tint)}
+.show .intro{max-width:none}
+.eng{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
+.card{position:relative;display:flex;flex-direction:column;background:var(--night);color:#fff;border-radius:10px;overflow:hidden}
+.card .ph{flex:none;height:clamp(120px,26svh,280px);background:#000}
+.card .tx{flex:1;display:flex;flex-direction:column;gap:var(--s1);padding:var(--s3)}
+.card h3{font-size:var(--t-h);font-weight:600;line-height:1.2;letter-spacing:0;color:var(--pale)}
+.card .tag{font-size:var(--t2);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:var(--green2)}
+.card p.for{line-height:1.35;font-weight:500;color:#fff}
+.card ul{margin-bottom:var(--s2)}
+.card ul li{font-size:var(--t-h);line-height:1.45;color:var(--pale)}
+.card .row{margin-top:auto;display:flex;flex-wrap:wrap;gap:var(--s1)}
+.card .row .btn{flex:999 0 auto}
+.card .row details{flex:1 0 auto}
+.card .btn{min-height:44px;padding:0 var(--s2);gap:.28em;white-space:nowrap}
+.card summary{display:flex;align-items:center;justify-content:center;gap:var(--s1);min-height:44px;padding:0 var(--s2);font-weight:800;white-space:nowrap;list-style:none;cursor:pointer;border-radius:6px;box-shadow:inset 0 0 0 2px #fff;transition:background .2s}
+.card summary::-webkit-details-marker{display:none}
+.card summary::after{content:'+';font-size:var(--t1);line-height:1;color:var(--green2)}
+.card summary:hover{background:rgba(255,255,255,.14)}
+.card details[open] summary{background:#fff;color:var(--ink)}
+.card details[open] summary::after{content:'×';color:var(--ink)}
+.card dl{position:absolute;inset:0 0 calc(var(--s3) + 44px + var(--s1)) 0;z-index:2;display:grid;grid-template-columns:auto 1fr;align-content:center;gap:var(--s1) var(--s3);padding:var(--s4);background:var(--night)}
+.card dt{color:var(--pale)}
+
+/* Find your setup: one sentence, the real thicknesses to choose from, a slider for the length, one answer */
+.say-it{font-size:var(--t1);font-weight:500;line-height:2}
+.say-it select,.say-it .box,.say-it #other{font:inherit;color:var(--ink);padding:1px 12px;margin:0 2px;border:0;border-radius:8px;background-color:#f4faea;box-shadow:inset 0 0 0 1px #b4d786;transition:background-color .2s,transform .25s var(--ease)}
+.say-it select{padding-right:34px;cursor:pointer;-webkit-appearance:none;appearance:none;background:#f4faea url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 9l7 7 7-7' fill='none' stroke='%23141917' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 10px center/16px}
+.say-it select:hover,.say-it .box:hover{background-color:#e8f4d5;transform:translateY(-1px)}
+.say-it #other{width:9em;background-color:#fff}
+.say-it #other[hidden]{display:none}
+.say-it .box{display:inline-block;cursor:text}
+.say-it .box input{width:2.4ch;padding:0;border:0;background:none;font:inherit;color:inherit;text-align:right;outline:0}
+.say-it.on select{animation:nudge .9s var(--ease) .9s 1}
+.say-it.on select:nth-of-type(2){animation-delay:1.05s}
+@keyframes nudge{40%{transform:translateY(-4px)}}
+.looks{display:grid;grid-template-columns:repeat(8,1fr);gap:var(--s2);margin-top:var(--s2)}
+.looks button{align-self:start;padding:0;background:none;border:0;font:inherit;color:var(--ink);text-align:center;cursor:pointer}
+.looks .tile{display:flex;align-items:center;height:44px;margin-bottom:6px;background:var(--night);border-radius:6px;overflow:hidden;transition:transform .25s var(--ease)}
+.looks button:hover .tile{transform:translateY(-2px)}
+.looks button[aria-checked="true"] .tile{outline:2px solid var(--green);outline-offset:2px}
+.looks .bar{display:block;width:100%;height:calc(var(--mm) * 2px);background:#f2ffe0;box-shadow:0 0 8px var(--green2),0 0 18px var(--green)}
+.looks .strand{background:repeating-linear-gradient(0deg,#f2ffe0 0 2px,#8fbf45 2px 3px)}
+.looks .mesh{height:100%;background:repeating-linear-gradient(45deg,transparent 0 6px,#c5ec80 6px 7px),repeating-linear-gradient(-45deg,transparent 0 6px,#c5ec80 6px 7px);box-shadow:none}
+.looks b{display:block;font-size:var(--t-1);font-weight:600;line-height:1.25}
+.looks small{display:block;font-size:var(--t-1);line-height:1.25;color:var(--soft)}
+.len{display:block;margin-top:var(--s3)}
+.len input{-webkit-appearance:none;appearance:none;display:block;width:100%;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--green) var(--p,15%),#e3e9e4 var(--p,15%));cursor:grab}
+.len input::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px var(--green),0 2px 6px rgba(0,0,0,.2)}
+.len input::-moz-range-thumb{width:22px;height:22px;border:0;border-radius:50%;background:#fff;box-shadow:0 0 0 2px var(--green),0 2px 6px rgba(0,0,0,.2)}
+.ends{display:flex;justify-content:space-between;margin-top:var(--s1);font-size:var(--t-1);color:var(--soft)}
+.answer{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s4);align-items:center;margin-top:var(--s3);padding:var(--s2) var(--s3);background:var(--tint);border-radius:10px}
+.answer b{display:block;font-size:var(--t2);font-weight:700;line-height:1.15;letter-spacing:-.01em}
+.answer p{margin-top:2px;color:var(--soft)}
+.answer .btn{min-height:48px;padding:0 var(--s3)}
+
+/* How it installs: a 3D walk along the real run, with the steps on the left */
+.install{position:relative;display:block;padding:0;background:#0d1110;color:#fff}
+.rig{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);height:100svh;background:#0d1110}
+.steps{align-self:center;padding:var(--s5) var(--s5) var(--s5) var(--m)}
+.steps h2{margin-bottom:var(--s2)}
+.steps>p{font-size:var(--t1);line-height:1.35;color:var(--pale);margin-bottom:var(--s5)}
+.steps li{padding:var(--s2) 0;opacity:.58;transition:opacity .35s}
+.steps li.on{opacity:1}
+.steps li b{display:block;font-size:var(--t1);font-weight:800;line-height:1.2}
+.steps li span{color:var(--pale)}
+.view{position:relative;min-width:0;overflow:hidden;background:#0d1110}
+.call{position:absolute;left:0;top:0;z-index:2;pointer-events:none;will-change:transform}
+.call i{position:absolute;left:-6px;top:-6px;width:12px;height:12px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.22);transform:scale(var(--a))}
+.call em{position:absolute;left:0;bottom:8px;width:1px;height:calc(64px + var(--lift,0px));background:rgba(255,255,255,.7);transform-origin:bottom;transform:scaleY(var(--a))}
+.call p{position:absolute;left:0;bottom:calc(80px + var(--lift,0px));width:max-content;max-width:280px;text-align:center;font-size:var(--t-h);line-height:1.3;color:var(--pale);opacity:var(--a);transform:translate(calc(-50% + var(--nudge,0px)),calc((1 - var(--a)) * 10px))}
+.call b{display:block;font-size:var(--t1);font-weight:800;line-height:1.2;color:#fff}
+.call.down em{top:8px;bottom:auto;transform-origin:top}
+.call.down p{top:80px;bottom:auto;transform:translate(calc(-50% + var(--nudge,0px)),calc((var(--a) - 1) * 10px))}
+.view canvas{display:block;width:100%;height:100%}
+.view::before{content:"";position:absolute;inset:0 auto 0 0;z-index:1;width:var(--s6);background:linear-gradient(90deg,#0d1110,transparent);pointer-events:none}
+.rig.flat{height:auto;grid-template-columns:minmax(0,1fr)}
+.rig.flat .view{display:none}
+.rig.flat .steps li,.rig.flat .steps>p{display:block;opacity:1}
+
+/* Questions */
+.faq{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:var(--s6);align-items:start;align-content:center;background:var(--tint)}
+.faq details{background:#fff;border-radius:6px}
+.faq details+details{margin-top:var(--s1)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:var(--s3);padding:var(--s2) var(--s3);font-size:var(--t1);font-weight:800;line-height:1.25}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';color:#6f9a30;font-weight:800}
+.faq details[open] summary::after{content:'–'}
+.faq details p{padding:0 var(--s3) var(--s3);max-width:44em}
+
+/* Quote */
+.quote{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s6);align-items:start;align-content:center;background:var(--night);color:#fff}
+.quote address{font-style:normal;font-size:var(--t1);line-height:1.5}
+.quote address a{text-decoration:none;font-weight:800}
+.quote address small{display:block;margin-top:var(--s2);font-size:var(--t0);color:var(--pale)}
+form{background:#fff;color:var(--ink);border-radius:6px;padding:var(--s4);display:grid;grid-template-columns:1fr 1fr;gap:var(--s2)}
+form label{font-weight:800}
+form input,form select,form textarea{display:block;width:100%;margin-top:var(--s1);min-height:52px;padding:var(--s1) var(--s2);font:inherit;font-weight:500;color:var(--ink);background:var(--tint);border:0;border-radius:6px}
+form textarea{min-height:120px;resize:vertical}
+form .full{grid-column:1/3}
+form small{font-size:var(--t-1);color:var(--soft)}
+
+footer{padding:var(--s5) var(--m);background:var(--night);color:var(--pale);font-size:var(--t-1)}
+
+/* Reveal on scroll: everything is readable without it */
+.js .rise{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .rise.on{opacity:1;transform:none}
+
+@media (max-height:780px) and (min-width:1041px){
+  section{padding-top:var(--s4);padding-bottom:var(--s4)}
+  .intro{margin-bottom:var(--s3)}
+  .vs th,.vs td{padding-top:var(--s1);padding-bottom:var(--s1)}
+  .apps{padding-top:var(--s3)}
+  .card .tx{padding:var(--s2) var(--s3)}
+  .card ul{margin-bottom:var(--s1)}
+  .card dl{bottom:calc(var(--s2) + 44px + var(--s1))}
+  .say-it{line-height:1.8}
+  .looks .tile{height:40px}
+  .steps{padding-top:var(--s3);padding-bottom:var(--s3)}
+  .steps>p{margin-bottom:var(--s2)}
+  .steps li{padding:var(--s1) 0}
+  form{padding:var(--s3);gap:var(--s1) var(--s2)}
+  form input,form select,form textarea{min-height:44px}
+  form textarea{min-height:88px}
+}
+@media (max-width:1240px){
+  .card .btn span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+}
+@media (max-width:1040px){
+  .top nav a:not(.rent):not(.go):not([href="#products"]):not([href="#questions"]){display:none}
+  .stage{flex-direction:column;align-items:stretch}
+  .pic{position:relative;inset:auto;flex:1 1 auto;order:-1;min-height:34svh}
+  .pic>img:first-child{object-position:var(--phone-x,62%) 62%}
+  .pic .seal{width:72px;bottom:var(--s1)}
+  .pic::after{background:linear-gradient(180deg,var(--hero),transparent max(14%,48px),transparent 66%,var(--hero) 96%)}
+  .say{flex:none;width:auto;padding:var(--s3) var(--m)}
+  .strip-row{flex-direction:column;align-items:stretch;gap:var(--s1);padding-top:0}
+  .gains{justify-content:flex-start;gap:var(--s1) var(--s3)}
+  .quote,.faq{grid-template-columns:minmax(0,1fr);gap:var(--s4)}
+  .faq{gap:var(--s3)}
+  .tick img{height:calc(var(--h) * .9)}
+  .rig{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr)}
+  .steps{padding:var(--s4) var(--m) var(--s2)}
+  .steps>p,.steps li{display:none}
+  .steps li.on{display:block;opacity:1}
+  .steps h2{margin-bottom:var(--s1)}
+  .view::before{display:none}
+}
+@media (max-width:640px){
+  .call em{height:calc(40px + var(--lift,0px))}
+  .call p{bottom:calc(56px + var(--lift,0px));max-width:200px}
+  .call.down p{top:56px}
+  .call b{font-size:var(--t0)}
+}
+@media (max-width:640px){
+  h1{font-size:var(--t3)}h2{font-size:var(--t3)}
+  h1 .next{font-size:var(--t1)}
+  .pic{min-height:24svh}
+  .acts .btn{flex:1;padding:0 var(--s2)}
+  .acts .ghost{flex:none;padding:0 var(--s1)}
+  .gains{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s1)}
+  .gains li{flex-direction:column;align-items:center;gap:0;text-align:center;white-space:normal}
+  .gains svg{margin:0 0 2px}
+  .band{--g:40px;padding:var(--s1) 0}
+  .band>p{padding:0 var(--s2) 0 var(--m)}
+  .tick img{height:calc(var(--h) * .75)}
+  section{padding:var(--s4) var(--m)}
+  .intro{margin-bottom:var(--s3)}
+  .intro p{font-size:var(--t0)}
+  .jobs{grid-template-columns:minmax(0,1fr)}
+  .apps{padding:var(--s4) 0 0}
+  .wall{grid-template-columns:repeat(2,1fr);grid-template-rows:1.25fr 1fr 1fr}
+  .wall figure,.wall figure:nth-child(1),.wall figure:nth-child(2){grid-column:span 1}
+  .wall figure:nth-child(1){grid-column:span 2}
+  .wall figcaption{padding:var(--s1) var(--s2);font-size:var(--t0)}
+  .vs,.vs tbody,.vs thead{display:block}
+  .vs tr{display:grid;grid-template-columns:1fr 1fr;gap:0 var(--s2)}
+  .vs thead td{display:none}
+  .vs th,.vs td{padding:0 0 var(--s1);font-size:var(--t0)}
+  .vs thead th{padding-bottom:var(--s1);font-size:var(--t-h)}
+  .vs tbody .side{grid-column:1/-1;width:auto;padding-top:var(--s1);padding-bottom:2px;font-size:var(--t-1)}
+  .vs tbody tr>*{border-top:0}
+  .vs tbody tr{border-top:1px solid rgba(255,255,255,.1)}
+  .eng{grid-template-columns:minmax(0,1fr);gap:var(--s2)}
+  .card{display:grid;grid-template-columns:104px minmax(0,1fr)}
+  .card .ph{position:relative;height:auto}
+  .card .ph img{position:absolute;inset:0}
+  .card h3{font-size:var(--t-1)}
+  .card .tag{font-size:var(--t1)}
+  .card .tx{padding:var(--s2)}
+  .card ul{display:none}
+  .card p.for{font-size:var(--t-h)}
+  .card .btn{min-height:44px;padding:0 var(--s1);font-size:var(--t-1)}
+  .card .btn span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .card summary{min-height:44px;padding:0 var(--s1);font-size:var(--t-1)}
+  .card details[open]{flex-basis:100%}
+  .card dl{position:static;margin-top:var(--s1);padding:var(--s2);gap:2px var(--s2);border-radius:6px;background:rgba(255,255,255,.06);font-size:var(--t-1)}
+  .say-it{line-height:2}
+  .looks{grid-template-columns:repeat(4,1fr);gap:var(--s1);margin-top:var(--s1)}
+  .looks .tile{height:40px;margin-bottom:4px}
+  .looks .bar{height:calc(var(--mm) * 1.5px)}
+  .looks .mesh{height:100%}
+  .len{margin-top:var(--s2)}
+  .answer{grid-template-columns:minmax(0,1fr);gap:var(--s2)}
+  .quote{gap:var(--s3)}
+  .quote .intro{margin-bottom:var(--s1)}
+  .quote address{font-size:var(--t0);line-height:1.4}
+  .quote address small{margin-top:var(--s1);font-size:var(--t-1)}
+  form{padding:var(--s3);gap:var(--s1) var(--s2)}
+  form input,form select,form textarea{min-height:44px}
+  form textarea{min-height:72px}
+}
+@media (prefers-reduced-motion:reduce){
+  .tick>div,h1 .laser,.say-it.on select,.strip.beam{animation:none}
+  .js .rise{opacity:1;transform:none;transition:none}
+}
+
+/* Fixes from the page test */
+[tabindex="-1"]:focus{outline:0}
+#rent{scroll-margin-top:var(--s5)}
+.say-it .box:has(input:focus-visible){outline:3px solid var(--ring,var(--green));outline-offset:3px}
+#setup,.faq,form{--ring:#4f7a14}
+.say-it select{max-width:calc(100% - 4px)}
+#word[hidden]{display:none}
+form textarea::placeholder{color:var(--soft)}
+.wall figure:nth-child(1) img{object-position:50% 0}
+.wall figure:nth-child(1) figcaption,.wall figure:nth-child(3) figcaption{padding-left:var(--m)}
+html:not(.js) #setup .say-it,html:not(.js) #looks,html:not(.js) .len,html:not(.js) .answer>div{display:none}
+html:not(.js) #setup noscript .say-it{display:block}
+html:not(.js) .tick>div{animation:none}
+@media (min-width:641px) and (max-width:949px){.card .tag{font-size:var(--t1)}}
+@media (min-width:641px) and (max-width:767px){.card .tag{min-height:2.2em}}
+@media (min-width:641px) and (max-width:1040px){.gains{display:grid;grid-template-columns:repeat(3,max-content);gap:var(--s1) var(--s4)}}
+@media (min-width:641px) and (max-width:1040px){.gains{justify-content:start}.pic .seal{width:96px}}
+@media (min-width:641px) and (max-width:1040px) and (max-height:840px){.quote{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:var(--s4);padding-top:var(--s4);padding-bottom:var(--s4)}form{padding:var(--s3);gap:var(--s1) var(--s2)}form input,form select,form textarea{min-height:44px}form textarea{min-height:88px}.show{padding-top:var(--s4);padding-bottom:var(--s4)}.show .intro{margin-bottom:var(--s3)}.card .ph{height:clamp(100px,18svh,200px)}.card .tx{padding:var(--s2)}.card ul{margin-bottom:var(--s1)}}
+@media (max-width:840px){.looks b{min-height:2.5em;display:flex;align-items:flex-end;justify-content:center}}
+@media (max-width:640px){
+  .tick{-webkit-mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent)}
+  .top{padding:0 var(--m);gap:var(--s2)}
+  .top nav{gap:var(--s2)}
+  .top nav a{display:inline-flex;align-items:center;min-height:44px}
+  .quote address a{display:inline-block;padding:var(--s1) 0}
+  .len input::-webkit-slider-thumb{width:28px;height:28px}
+  .len input::-moz-range-thumb{width:28px;height:28px}
+  .wall figure:nth-child(3) figcaption{padding-left:var(--s2)}
+  .wall figure:nth-child(2) figcaption,.wall figure:nth-child(4) figcaption{padding-left:var(--m)}
+}
+@media (max-width:640px) and (max-height:800px){.show{padding-top:var(--s2);padding-bottom:var(--s2)}.show .intro{margin-bottom:var(--s2)}.eng{gap:var(--s1)}.card .tx{padding:var(--s1) var(--s2);gap:4px}}
+@media (max-width:640px) and (max-height:640px){.pic{min-height:16svh}.say{padding:var(--s2) var(--m)}h1{font-size:var(--t2)}.acts{margin-top:var(--s2)}.gains svg{display:none}}
+@media (max-width:430px){.top nav a[href="#questions"]{display:none}}
+@media (max-width:360px){.card summary{gap:0}.card summary::after{display:none}}
+@media (max-width:340px){.acts{flex-wrap:nowrap;gap:var(--s1)}.acts .btn{white-space:nowrap;padding:0 var(--s1)}.card .tag{font-size:var(--t0)}}
+@media (max-width:1040px){#steps{display:grid}.steps li{display:block;grid-area:1/1;visibility:hidden}.steps li.on{visibility:visible}.rig.flat #steps{display:block}.rig.flat .steps li{visibility:visible}}
+@media (max-width:1040px) and (max-height:500px){.rig{grid-template-columns:minmax(0,4fr) minmax(0,8fr);grid-template-rows:none}.steps{padding:var(--s2) var(--m)}.view::before{display:block;width:var(--s5)}}
+@media (max-height:500px){.jobs .ph{max-height:none}}
+@media (max-width:640px){#setup{justify-content:flex-start}}
+@media (pointer:coarse){.len input{pointer-events:none}.len input::-webkit-slider-thumb{pointer-events:auto}.len input::-moz-range-thumb{pointer-events:auto}}
+@media (prefers-reduced-motion:reduce) and (max-width:1040px){.rig{height:auto;grid-template-rows:auto 60svh}#steps{display:block}.steps li{visibility:visible}}
+/* Public sample only */
+.sample-note{display:flex;align-items:center;min-height:32px;padding:0 var(--m);background:var(--hero);color:var(--pale);font-size:var(--t-1);line-height:1.2}
+.fold{min-height:calc(100svh - 32px)}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+<p class="sample-note">Sample homepage, prepared by Faisal Suleiman</p>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M6.3 17.7l-1.4 1.4M19.1 4.9l-1.4 1.4"/></symbol>
+  <symbol id="i-spin" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.9 1 6.7 2.7L21 8"/><path d="M21 3v5h-5"/><circle cx="12" cy="12" r="2.5"/></symbol>
+  <symbol id="i-temp" viewBox="0 0 24 24"><path d="M14 4v10.5a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/><circle cx="12" cy="17.5" r="1.2"/></symbol>
+  <symbol id="i-drop" viewBox="0 0 24 24"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5S12.5 5.5 12 3c-.5 2.5-2 4.9-4 6.5S5 13 5 15a7 7 0 0 0 7 7Z"/></symbol>
+  <symbol id="i-loop" viewBox="0 0 24 24"><path d="M7 19H4.8a1.8 1.8 0 0 1-1.6-.9 1.8 1.8 0 0 1 0-1.8l4-6.8"/><path d="M11 19h8.2a1.8 1.8 0 0 0 1.6-.9 1.8 1.8 0 0 0 0-1.8l-1.3-2.1"/><path d="m14 16-3 3 3 3"/><path d="M8.3 13.6 7.2 9.5l-4.1 1.1"/><path d="m9.3 5.8 1.1-1.9A1.8 1.8 0 0 1 12 3a1.8 1.8 0 0 1 1.5.9l4 6.8"/><path d="m13.4 9.6 4.1 1.1 1.1-4.1"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-iron" viewBox="0 0 24 24"><path d="M14 12h8" stroke-width="4.4"/><path d="M14 12H2"/><path d="M5 4l14 16"/></symbol>
+</svg>
+
+<div class="fold" id="top">
+  <header class="top">
+    <a href="#top" aria-label="Jagoteq home"><img class="logo" src="assets/logo-full-light.png" alt="Jagoteq"></a>
+    <nav aria-label="Main">
+      <a href="#products">Products</a>
+      <a href="#applications">Applications</a>
+      <a class="rent" href="#rent">Rentals</a>
+      <a href="#install">Installation</a>
+      <a href="#questions">Questions</a>
+      <a class="go" href="#quote">Quote</a>
+    </nav>
+  </header>
+  <div class="stage">
+    <div class="say">
+      <h1><span>Powered by <em class="laser" style="font-style:normal">lasers</em></span> <span class="next">Fueled by your imagination</span></h1>
+      <div class="acts"><a class="btn" href="#quote">Request a Quote</a><a class="btn ghost" href="#install">How it installs</a></div>
+      <div class="marks"><p><svg aria-hidden="true"><use href="#i-shield"/></svg>FDA certified</p></div>
+    </div>
+    <div class="pic">
+      <img src="assets/hero-cliff.jpg" alt="A cliff house at dusk outlined in cyan and magenta fiber light"><img class="seal" src="assets/award.png" alt="Best New Product Award Winner, Special Effects, LDI 2024">
+    </div>
+  </div>
+  <div class="strip-row">
+    <ul class="gains">
+      <li><svg aria-hidden="true"><use href="#i-sun"/></svg><b>3x</b>more vibrant</li>
+      <li><svg aria-hidden="true"><use href="#i-spin"/></svg><b>360°</b>glow</li>
+      <li><svg aria-hidden="true"><use href="#i-temp"/></svg><b>0</b>heat in the fiber</li>
+      <li><svg aria-hidden="true"><use href="#i-drop"/></svg><b>100%</b>immersible</li>
+      <li><svg aria-hidden="true"><use href="#i-loop"/></svg><b>100%</b>recyclable</li>
+      <li><svg aria-hidden="true"><use href="#i-iron"/></svg><b>No</b>soldering</li>
+    </ul>
+  </div>
+  <div class="band" aria-label="Companies Jagoteq has worked with">
+    <p>Worked with</p>
+    <div class="tick"><div id="tick"><img src="assets/clients/universal.svg" alt="Universal" style="--h:54px"><img src="assets/clients/disney.svg" alt="Disney" style="--h:44px"><img src="assets/clients/johnson-johnson.svg" alt="Johnson &amp; Johnson" style="--h:16px"><img src="assets/clients/kaiser-permanente.svg" alt="Kaiser Permanente" style="--h:19px"><img src="assets/clients/genesis.svg" alt="Genesis" style="--h:48px"><img src="assets/clients/hayward.svg" alt="Hayward" style="--h:17px"><img src="assets/clients/marriott.svg" alt="Marriott" style="--h:49px"><img src="assets/clients/promedica.svg" alt="ProMedica" style="--h:22px"></div></div>
+  </div>
+</div>
+
+<main>
+<section>
+  <div class="intro rise"><h2>Recent projects</h2></div>
+  <div class="jobs">
+    <figure class="rise"><div class="ph"><video src="assets/promedica-clip.mp4" poster="assets/promedica-4k.jpg" autoplay muted loop playsinline preload="metadata" aria-label="The ProMedica building in Ohio, outlined in green fiber at night"></video></div><figcaption><img src="assets/clients/promedica.svg" alt="ProMedica" style="--h:21px"> building in Ohio, 302 ft of fiber on three LF40 IP systems</figcaption></figure>
+    <figure class="rise"><div class="ph" id="genesis"><img src="assets/genesis-4k.jpg" alt="A Genesis GV80 under a red line of light, from the commercial" loading="lazy"></div><figcaption><img src="assets/clients/genesis.svg" alt="Genesis" style="--h:30px"> GV80 commercial, 1,200 strand fiber lit by 8 LF120 engines</figcaption></figure>
+  </div>
+</section>
+
+<section class="apps" id="applications">
+  <div class="intro rise"><h2>Where it goes</h2></div>
+  <div class="wall">
+    <figure class="rise"><div class="ph"><img src="assets/event.jpg" alt="A trade show booth hung with thousands of lit fiber strands" loading="lazy"></div><figcaption>Live Event</figcaption></figure>
+    <figure class="rise"><div class="ph"><img src="assets/pool2.jpg" alt="A pool edged in teal fiber at night" loading="lazy"></div><figcaption>Pool and Spa</figcaption></figure>
+    <figure class="rise"><div class="ph"><img src="assets/photos/stairs.jpg" alt="Steps and a building lit in pink and blue" loading="lazy"></div><figcaption>Architectural</figcaption></figure>
+    <figure class="rise"><div class="ph"><img src="assets/landscape.jpg" alt="A palm lit green, with a line of fiber through the garden" loading="lazy"></div><figcaption>Landscape</figcaption></figure>
+    <figure class="rise"><div class="ph"><img src="assets/genesis.jpg" alt="A child reaching for a ribbon of red light, from the Genesis commercial" loading="lazy"></div><figcaption>TV and Film</figcaption></figure>
+  </div>
+</section>
+
+<section class="why">
+  <div class="intro rise"><h2>Why lasers beat LED</h2></div>
+  <table class="vs rise">
+    <thead><tr><td class="side"></td><th scope="col" class="led"><i class="strip dots" aria-hidden="true"></i>Traditional LED</th><th scope="col" class="las"><i class="strip beam" aria-hidden="true"></i>Jagoteq laser fiber</th></tr></thead>
+    <tbody>
+      <tr><th scope="row" class="side">Color</th><td>Pastel look</td><td class="las">3x the color saturation</td></tr>
+      <tr><th scope="row" class="side">Light</th><td>Dark spots</td><td class="las">Even 360° glow</td></tr>
+      <tr><th scope="row" class="side">Water</th><td>Short circuits in humid places</td><td class="las">100% immersible</td></tr>
+      <tr><th scope="row" class="side">Run length</th><td>15 ft per controller</td><td class="las">32 to 100 ft per engine</td></tr>
+      <tr><th scope="row" class="side">Long-term cost</th><td>Higher utility bills</td><td class="las">Better cost over time</td></tr>
+      <tr><th scope="row" class="side">After the job</th><td>Usually 1 to 3 uses, then landfill</td><td class="las">Reusable, 100% recyclable</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="show" id="products">
+  <div class="intro rise"><h2>Choose the engine that lights your project</h2><p>The engine makes the light, so pick the one that suits where it’s going</p></div>
+  <div class="eng">
+    <article class="card rise">
+      <div class="ph"><img src="assets/e-lf120.jpg" alt="The LF120 laser engine on a truss, with glowing purple fiber" loading="lazy"></div>
+      <div class="tx"><h3>LF120</h3><p class="tag">The big one</p>
+        <p class="for">For film sets, live events and indoor spaces</p>
+        <ul><li>3x the power of the LF40</li><li>Quiet enough for film sets</li><li>Controlled through DMX or Ethernet</li></ul>
+        <div class="row"><a class="btn" href="#quote" data-engine="LF120">Quote <span>the LF120</span></a>
+        <details><summary>Full specs</summary><dl><dt>Size</dt><dd>10” x 9.5” x 14.75”, 27.5 lbs</dd><dt>Power</dt><dd>12W, 5A</dd><dt>Control</dt><dd>5-pin DMX, e-DMX (Art-Net/sACN)</dd><dt>Color</dt><dd>RGBI, CCT, HSI, effects, presets log</dd><dt>Noise</dt><dd>45dB max</dd></dl></details></div></div>
+    </article>
+    <article class="card rise">
+      <div class="ph"><img src="assets/e-lf40.jpg" alt="The LF40 laser engine on a truss, with glowing blue fiber" loading="lazy"></div>
+      <div class="tx"><h3>LF40</h3><p class="tag">The compact one</p>
+        <p class="for">For smaller jobs you can carry</p>
+        <ul><li>Just 3 lbs</li><li>Runs on a 12V battery or wall power</li><li>Quiet enough for film sets</li></ul>
+        <div class="row"><a class="btn" href="#quote" data-engine="LF40">Quote <span>the LF40</span></a>
+        <details><summary>Full specs</summary><dl><dt>Size</dt><dd>7.5” x 4” x 7”, 3 lbs</dd><dt>Power</dt><dd>4W, 2A</dd><dt>Control</dt><dd>5-pin DMX, e-DMX. W-DMX and Bluetooth on request</dd><dt>Color</dt><dd>RGBI, CCT, HSI, effects, presets log</dd><dt>Noise</dt><dd>45dB max</dd></dl></details></div></div>
+    </article>
+    <article class="card rise">
+      <div class="ph"><img src="assets/e-lf40ip.jpg" alt="The LF40 IP laser engine in its water-resistant housing, with glowing pink fiber" loading="lazy"></div>
+      <div class="tx"><h3>LF40 IP</h3><p class="tag">The tough one</p>
+        <p class="for">Weather-resistant for outdoor jobs</p>
+        <ul><li>Water-resistant housing</li><li>Same performance as the LF40</li><li>Used on the ProMedica building</li></ul>
+        <div class="row"><a class="btn" href="#quote" data-engine="LF40 IP">Quote <span>the LF40 IP</span></a>
+        <details><summary>Full specs</summary><dl><dt>Size</dt><dd>7.5” x 4” x 7”, 3 lbs</dd><dt>Power</dt><dd>4W, 2A</dd><dt>Control</dt><dd>5-pin DMX, Art-Net/sACN. Bluetooth or CRMX on request</dd><dt>Color</dt><dd>RGBI, CCT, HSI, effects, presets log</dd><dt>Noise</dt><dd>45dB max</dd></dl></details></div></div>
+    </article>
+  </div>
+</section>
+
+<section id="setup">
+  <div class="intro rise"><h2>Find your setup</h2></div>
+  <p class="say-it rise">I’m lighting <select id="what" aria-label="What you’re lighting"></select> <input id="other" type="text" placeholder="what is it?" aria-label="Tell us what you’re lighting" hidden> with <span id="an">a</span> <select id="look" aria-label="How thick the line is"></select> <span id="word">line</span> about <label class="box"><input id="feet" inputmode="numeric" value="30" aria-label="Length in feet"> ft</label> long</p>
+  <noscript><p class="say-it">Tell us what you’re lighting and we’ll match an engine</p></noscript>
+  <div class="looks rise" id="looks" role="radiogroup" aria-label="Line thickness"></div>
+  <label class="len rise"><input id="slide" type="range" min="1" max="201" value="30" aria-label="Length in feet"><span class="ends"><span>1 ft</span><span>50</span><span>100</span><span>150</span><span>200+ ft</span></span></label>
+  <div class="answer rise" aria-live="polite">
+    <div><b id="need">You need 1 LF40 engine</b><p id="plus">Plus your fiber, cut to length</p></div>
+    <a class="btn" href="#quote" id="carry">Quote this setup</a>
+  </div>
+</section>
+
+<section class="install" id="install">
+  <div class="rig flat" id="rig">
+    <div class="steps">
+      <h2>How it installs</h2>
+      <p>Five parts, no soldering, no extra hardware</p>
+      <ol id="steps">
+        <li class="on"><b>Laser engine</b><span>Makes the light, out of sight</span></li>
+        <li><b>Transfer fiber</b><span>A dark cable that lets you keep the engine up to 200 ft from the light</span></li>
+        <li><b>Safety FiberLink</b><span>Joins the dark cable to your glowing fiber</span></li>
+        <li><b>Fiber optic cable</b><span>Glows along its length, cut to fit</span></li>
+        <li><b>Mirrored end cap</b><span>Finishes the run</span></li>
+      </ol>
+    </div>
+    <div class="view"><canvas id="scene" aria-label="A 3D view of a Jagoteq system: a small engine, a long dark transfer fiber, a connector, glowing fiber and an end cap"></canvas></div>
+  </div>
+</section>
+
+<section class="faq" id="questions">
+  <h2 class="rise">Common questions</h2>
+  <div class="rise">
+    <details open><summary>Is laser fiber optic lighting safe?</summary><p>Yes, when you follow the instructions. Jagoteq products are FDA and ETL certified, and the glowing fiber has zero electricity and zero heat. Safety training is required, in person or online.</p></details>
+    <details><summary>Can it go in water?</summary><p>The glowing fiber is 100% immersible because there’s no electricity in it. Keep the engine and the ends of the dark transfer fiber out of the water. For outdoor jobs, choose the weather-resistant LF40 IP.</p></details>
+    <details><summary>Does it work with DMX?</summary><p>Yes. The LF120 takes 5-pin DMX and e-DMX (Art-Net/sACN). The LF40 takes 5-pin DMX and e-DMX, with wireless DMX and Bluetooth on request.</p></details>
+    <details><summary>Is there a warranty?</summary><p>Yes. The LF40 has two years on workmanship and parts.</p></details>
+    <details id="rent"><summary>Can I rent it?</summary><p>Yes. Call <a href="tel:+13107401255">310-740-1255</a> for rentals.</p></details>
+  </div>
+</section>
+
+<section class="quote" id="quote">
+  <div class="rise">
+    <div class="intro"><h2>Tell us about your project</h2></div>
+    <address><a href="tel:+13107401255">310-740-1255</a><br><a href="mailto:info@jagoteq.com">info@jagoteq.com</a><small>7051 1/2 Vineland Ave, North Hollywood, CA 91605<br>Visits by appointment only, Monday to Thursday, 8 am to 5 pm</small></address>
+  </div>
+  <form id="qf" class="rise">
+    <label>Name<input name="name" autocomplete="name" required pattern=".*\S.*" title="Please enter your name"></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required></label>
+    <label class="full">Project type
+      <select name="application" required><option value="" selected disabled>Choose one</option><option>Architectural</option><option>Pool and Spa</option><option>Landscape</option><option>Live Event</option><option>TV or Film</option><option>Something else</option></select>
+    </label>
+    <label class="full">What do you need?<textarea name="details" id="det" placeholder="What you’re lighting, how long the run is, and when you need it"></textarea></label>
+    <button class="btn full" type="submit">Request a Quote</button>
+    <small class="full">This is a sample page, so the form doesn't send</small>
+  </form>
+</section>
+</main>
+
+<footer>Sample for review, not the live site<br>Client logos need confirming before anything goes live</footer>
+
+<script>
+const $=id=>document.getElementById(id);
+/* The logo row, four times over so it fills any screen and loops. Each logo has its own height so they look a similar size, and the same gap */
+const L=[['universal','Universal',54],['disney','Disney',44],['johnson-johnson','Johnson & Johnson',16],['kaiser-permanente','Kaiser Permanente',19],['genesis','Genesis',48],['hayward','Hayward',17],['marriott','Marriott',49],['promedica','ProMedica',22]];
+const cell=([f,n,h],d)=>`<img src="assets/clients/${f}.svg" alt="${d?'':n}" style="--h:${h}px"${d?' aria-hidden="true"':''}>`;
+$('tick').innerHTML=L.map(l=>cell(l)).join('')+[1,2,3].map(()=>L.map(l=>cell(l,1)).join('')).join('');
+
+/* Jagoteq's own compatibility chart, Product Catalog 7. one and two are the longest run in feet on 1 or 2 engines:
+   the catalog's 10m is the site's 32 ft, 15m is 49 ft, 20m is 65 ft, 30m is 100 ft and 61m is 200 ft.
+   eng is the engine the chart prefers, any marks a fiber both run equally. mm draws each bar at true scale, 2px to the millimeter */
+const LOOK=[{n:'fine',s:'1mm',eng:'LF40',one:49,two:100,mm:1},{n:'thin',s:'3mm',eng:'LF40',one:32,two:100,mm:3},{n:'medium',s:'6mm',eng:'LF40',any:1,one:32,two:100,mm:6},{n:'bold',s:'8mm',eng:'LF120',one:32,two:100,mm:8},{n:'extra bold',s:'12mm',eng:'LF120',one:32,two:100,mm:12},{n:'textured',s:'10mm',eng:'LF40',any:1,one:100,two:200,mm:10,c:'strand'},{n:'textured bold',s:'12mm',eng:'LF40',any:1,one:100,two:200,mm:12,c:'strand'},{n:'mesh',s:'up to 20 in',eng:'LF40',any:1,one:32,two:65,c:'mesh'}];
+const WHAT=[['a pool or spa',1,0,'Pool and Spa'],['a garden or landscape',1,0,'Landscape'],['the outside of a building',1,0,'Architectural'],['an indoor space',0,0,'Architectural'],['a stage or live event',0,1,'Live Event'],['a film or TV set',0,1,'TV or Film'],['something else',0,0,'Something else']];
+const fill=(el,items,i)=>{el.innerHTML=items.map((x,k)=>`<option value="${k}"${k===i?' selected':''}>${x}</option>`).join('')};
+fill($('what'),WHAT.map(x=>x[0]),3);fill($('look'),LOOK.map(x=>x.mm&&!x.c?`${x.n} ${x.s}`:x.c==='strand'?`${x.n} ${x.s}`:x.n),1);
+$('looks').innerHTML=LOOK.map((l,k)=>`<button type="button" role="radio" aria-checked="false" data-k="${k}"><span class="tile"><i class="bar ${l.c||''}" style="--mm:${l.mm||0}"></i></span><b>${l.n[0].toUpperCase()+l.n.slice(1)}</b><small>${l.s}</small></button>`).join('');
+$('looks').addEventListener('click',e=>{const b=e.target.closest('button');if(b){$('look').value=b.dataset.k;read()}});
+$('looks').addEventListener('keydown',e=>{const d={ArrowRight:1,ArrowDown:1,ArrowLeft:-1,ArrowUp:-1}[e.key];if(!d)return;e.preventDefault();const k=($('look').selectedIndex+d+LOOK.length)%LOOK.length;$('look').value=k;read();$('looks').children[k].focus()});
+/* Each box is as wide as the word in it, so the sentence still reads as a sentence */
+const ruler=document.createElement('canvas').getContext('2d');
+function fit(el){const c=getComputedStyle(el);ruler.font=`${c.fontWeight} ${c.fontSize} ${c.fontFamily}`;el.style.width=Math.ceil(ruler.measureText(el.options[el.selectedIndex].text).width)+50+'px'}
+const fitAll=()=>['what','look'].forEach(i=>fit($(i)));
+/* The length comes from the slider or from typing a number. The far end of the slider is 200+ */
+let good=30;
+const feet=()=>{const m=$('feet').value.replace(/,|\s|feet|ft/gi,'').match(/^\+?(\d+(?:\.\d+)?)(\+?)$/);if(!m||!+m[1])return good;const n=Math.ceil(+m[1]);return n>200||(n===200&&m[2])?201:n};
+const mark=()=>{const f=good=feet(),b=$('feet');$('slide').value=f;$('slide').style.setProperty('--p',(f-1)/2+'%');b.style.width='0';b.style.width=Math.max(22,Math.min(b.scrollWidth+2,120))+'px'};
+let setup='';
+function read(){const w=WHAT[$('what').value],l=LOOK[$('look').value],ft=feet(),other=w[0]==='something else',name=other&&$('other').value.trim()||w[0],shown=ft>200?'200+':ft,base=`${name}, ${l.n} line (${l.s}), about ${shown} ft`;
+ $('other').hidden=!other;$('an').textContent=/^[ae]/.test(l.n)?'an':'a';$('word').hidden=l.n==='mesh';fitAll();mark();
+ document.querySelectorAll('#looks button').forEach(b=>{const on=b.dataset.k===$('look').value;b.setAttribute('aria-checked',on);b.tabIndex=on?0:-1});
+ $('carry').textContent=ft>l.two?'Ask about this job':'Quote this setup';
+ if(ft>l.two){$('need').textContent='Let’s talk about this one';$('plus').textContent=`One run of this line goes up to ${l.two} ft, so this job needs more than one run`;setup=base;return}
+ const n=ft<=l.one?1:2,big=l.any&&w[2],eng=w[1]?'LF40 IP':big?'LF120':l.eng;
+ $('need').textContent=`You need ${n} ${eng} ${n===1?'engine':'engines'}`;
+ $('plus').textContent=other?($('other').value.trim()?'We’ll confirm the engine with you':'Tell us what it is and we’ll confirm the engine'):big?'The LF40 also works':l.any&&!w[1]?'The LF120 also works, with 3x the power':'Plus your fiber, cut to length';
+ setup=`${base}, ${n} ${eng}`}
+if(document.fonts)document.fonts.ready.then(fitAll);addEventListener('resize',fitAll);
+['what','look'].forEach(i=>$(i).addEventListener('change',read));
+$('other').addEventListener('input',read);
+$('slide').addEventListener('input',()=>{const v=+$('slide').value;$('feet').value=v>200?'200+':v;read()});
+$('feet').addEventListener('input',read);
+$('feet').addEventListener('change',()=>{const f=feet();$('feet').value=f>200?'200+':f;read()});
+read();
+/* Quote buttons add a line to the form, so nothing the visitor already wrote is lost */
+const addLine=x=>{const d=$('det');if(!d.value.includes(x))d.value=x+'\n'+d.value};
+let lastSetup='';
+$('carry').addEventListener('click',()=>{const d=$('det'),x='Setup from the site: '+setup;if(lastSetup&&d.value.includes('Setup from the site:'))d.value=d.value.replace(/^Setup from the site:.*$/m,x);else addLine(x);lastSetup=x;$('qf').elements.application.value=WHAT[$('what').value][3]});
+document.querySelectorAll('[data-engine]').forEach(a=>a.addEventListener('click',()=>addLine('I’d like a quote for the '+a.dataset.engine)));
+/* The rental answer opens however a visitor gets to it */
+const rentOpen=()=>{if(location.hash==='#rent')$('rent').open=true};addEventListener('hashchange',rentOpen);rentOpen();
+document.querySelector('a[href="#rent"]').addEventListener('click',()=>{$('rent').open=true});
+
+const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+if(calm){const v=document.querySelector('.jobs video');v.removeAttribute('autoplay');v.removeAttribute('loop');v.pause();v.load()}
+
+/* The Genesis film plays in its box. The still covers YouTube's own buttons and title until they fade, and comes back
+   before the end screen, so the film loops with no player showing. YouTube needs a web address, so an opened file keeps the still */
+if(!calm&&location.protocol.startsWith('http')){const box=$('genesis'),host=document.createElement('div');host.id='gfilm';box.prepend(host);
+ let timer,turning=false;const show=()=>{clearTimeout(timer);timer=setTimeout(()=>box.classList.add('live'),3800)};
+ window.onYouTubeIframeAPIReady=()=>{const p=new YT.Player('gfilm',{videoId:'ZA-BQZFrXyE',host:'https://www.youtube-nocookie.com',playerVars:{autoplay:1,mute:1,controls:0,disablekb:1,fs:0,iv_load_policy:3,cc_load_policy:0,playsinline:1,rel:0,origin:location.origin},events:{
+   onReady:e=>{e.target.mute();e.target.playVideo()},
+   onStateChange:e=>{if(e.data===YT.PlayerState.PLAYING){try{p.unloadModule('captions');p.unloadModule('cc')}catch(_){}if(!box.classList.contains('live'))show()}else{clearTimeout(timer);box.classList.remove('live')}}}});
+  const f=p.getIframe();f.tabIndex=-1;f.inert=true;f.setAttribute('aria-hidden','true');
+  window.__film=p;setInterval(()=>{if(!p.getDuration||!p.getDuration())return;if(!turning&&p.getDuration()-p.getCurrentTime()<10){turning=true;clearTimeout(timer);box.classList.remove('live');setTimeout(()=>{p.seekTo(0,true);turning=false;show()},900)}},500)};
+ const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';document.head.append(s)}
+
+/* Smooth jumps for the page's own links. This lives here and not in the CSS, because CSS smooth scrolling breaks the scroll pin */
+/* A jump finishes when the browser says the scroll has ended, then corrects any last gap. Scrolling by hand cancels it */
+let landing=null;
+const endJump=()=>{landing=null;window.jumpTo=null;clearTimeout(window.jumpEnd)};
+const land=()=>{if(!landing)return;const miss=landing.getBoundingClientRect().top-(parseFloat(getComputedStyle(landing).scrollMarginTop)||0);if(Math.abs(miss)>2)scrollTo({top:scrollY+miss,behavior:'instant'});else endJump()};
+addEventListener('scrollend',land);addEventListener('wheel',endJump,{passive:true});addEventListener('touchmove',endJump,{passive:true});
+function jump(to){const d=to.getBoundingClientRect().top;if(!calm&&Math.abs(d)>2*innerHeight)scrollBy({top:d-Math.sign(d)*innerHeight,behavior:'instant'});
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{to.scrollIntoView({behavior:calm?'auto':'smooth',block:'start'});landing=to}));
+ window.jumpTo=to;clearTimeout(window.jumpEnd);window.jumpEnd=setTimeout(()=>{land();endJump()},'onscrollend'in window?6000:2500);
+ to.setAttribute('tabindex','-1');to.focus({preventScroll:true})}
+document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const h=a.getAttribute('href'),to=document.querySelector(h);if(!to)return;e.preventDefault();if(location.hash!==h)history.pushState(null,'',h);jump(to)});
+
+/* This sample has no back end, so the form sends nothing */
+$('qf').addEventListener('submit',e=>e.preventDefault());
+
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rise').forEach(el=>io.observe(el));
+</script>
+<script src="assets/lib/three.min.js"></script>
+<script src="assets/lib/gsap.min.js"></script>
+<script src="assets/lib/ScrollTrigger.min.js"></script>
+<script src="assets/rig.js"></script>
+</body>
+</html>
