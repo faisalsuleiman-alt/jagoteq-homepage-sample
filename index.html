@@ -8,9 +8,6 @@
 <link rel="icon" href="data:,">
 <link rel="preload" as="image" type="image/webp" href="assets/w/hero-1920.webp" imagesrcset="assets/w/hero-828.webp 828w, assets/w/hero-1280.webp 1280w, assets/w/hero-1920.webp 1920w, assets/w/hero-2800.webp 2800w" imagesizes="(max-width:640px) 205vw, (max-width:1040px) 150vw, 100vw" fetchpriority="high">
 <link rel="preload" as="font" type="font/woff2" href="assets/figtree.woff2" crossorigin>
-<link rel="preconnect" href="https://www.youtube.com">
-<link rel="preconnect" href="https://www.youtube-nocookie.com">
-<link rel="preconnect" href="https://i.ytimg.com">
 <meta name="description" content="Sample homepage for Jagoteq, prepared by Faisal Suleiman.">
 <style>
 @font-face{font-family:"Figtree";src:url("assets/figtree.woff2") format("woff2");font-weight:300 900;font-style:normal;font-display:swap}
@@ -27,7 +24,7 @@
   --t-1:max(13px,calc(var(--u) * .75));--t-h:calc(var(--t-1) * 1.155);--t1h:calc(var(--u) * 1.54);--t3h:calc(var(--u) * 2.736);--t0:var(--u);--t1:calc(var(--u) * 1.333);--t2:calc(var(--u) * 1.777);--t3:calc(var(--u) * 2.369);--t4:calc(var(--u) * 3.157);--t5:calc(var(--u) * 4.209);
   --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--s6:64px;--s7:96px;--s8:128px;
   --air:clamp(16px,3.4svh,56px);
-  --m:clamp(20px,4vw,64px);
+  --m:clamp(20px,6vw,170px);
   --ink:#181818;--soft:#525252;--tint:#f5f5f5;--night:#131313;--hero:#08131f;--phone-x:100%;--part:#141414;--green:#92c83e;--green2:#a6da4f;--go:#86ea3c;--go2:#a2f561;--pale:#d0d0d0;
   --ease:cubic-bezier(.16,1,.3,1);
 }
@@ -62,25 +59,24 @@ h3{font-size:var(--t2);letter-spacing:-.02em}
 h1{font-size:var(--t3h);line-height:1.06;letter-spacing:-.03em;text-wrap:initial}
 h1 span{display:block}
 h1 .next{margin-top:var(--s1);font-size:var(--t1h);line-height:1.15;letter-spacing:-.015em;color:var(--pale);font-weight:600}
-h1 .laser{display:inline;background:linear-gradient(90deg,#e23bff,#5a5bff,#19d3ff,#54ff9f,#e23bff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 9s linear infinite}
+h1 .laser{display:inline;background:linear-gradient(90deg,#ff4d4d,#ff9a2e,#ffd93d,#54ff9f,#19d3ff,#5a5bff,#e23bff,#ff4d4d);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:spectrum 60s linear infinite}
+@keyframes spectrum{to{background-position:-200% 0}}
 @keyframes flow{to{background-position:-300% 0}}
-.own{margin-top:var(--s3);font-size:var(--t1);font-weight:600;line-height:1.25;color:#fff}
+.own{margin-top:var(--s2);font-size:var(--t0);font-weight:500;line-height:1.3;color:var(--pale)}
 .acts{margin-top:var(--s3);display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center}
 .acts .btn{min-height:44px;padding:0 var(--s3)}
 .acts .ghost{padding:0 var(--s1)}
 .btn.line{background:none;color:#fff;box-shadow:inset 0 0 0 2px var(--go)}
 .btn.line:hover{background:var(--go);color:var(--ink)}
 .strip-row{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);padding:var(--s1) var(--m) var(--s3)}
-.marks{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s2);margin-top:var(--s3)}
+.marks{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s2);margin-top:var(--s4)}
 .marks p{display:flex;align-items:center;gap:var(--s1);font-size:var(--t-h);font-weight:600;line-height:1.2;white-space:nowrap}
 .marks svg{flex:none;width:26px;height:26px;fill:none;stroke:var(--green2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .pic{position:absolute;inset:0}
 .pic>img:first-child{position:absolute;inset:0;object-position:100% 62%}
 .marks .seal{width:calc(var(--u) * 6);height:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
 .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--hero),transparent 10%,transparent 88%,var(--hero))}
-.pic>img:first-child,.herov{object-position:100% 50%}
-.herov{position:absolute;inset:0;opacity:0;transition:opacity .9s}
-.herov.on{opacity:1}
+.pic>img:first-child{object-position:100% 50%}
 .pic::after{background:linear-gradient(180deg,var(--hero),transparent 11%,transparent 90%,var(--hero)),linear-gradient(90deg,rgba(8,19,31,.86),rgba(8,19,31,.62) 30%,rgba(8,19,31,0) 52%)}
 .gains{flex:1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s1) var(--s4)}
 .gains li{display:flex;align-items:baseline;gap:6px;color:var(--pale);font-size:var(--t-1);line-height:1.3;white-space:nowrap}
@@ -105,14 +101,12 @@ section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction
 .dark .intro p{color:var(--pale)}
 
 /* Projects: moving pictures in the boxes */
-.jobs{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
+.work h2{font-weight:600;letter-spacing:-.025em}
+.jobs{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5)}
 .jobs figure{min-width:0}
-.jobs .ph{position:relative;aspect-ratio:16/9;max-height:calc(100svh - 300px);width:100%;border-radius:6px;overflow:hidden;background:var(--night)}
-.jobs iframe{position:absolute;left:-22.5%;top:-22.5%;width:145%;height:145%;border:0;pointer-events:none}
-.jobs #genesis>img{position:absolute;inset:-1px;z-index:1;width:calc(100% + 2px);height:calc(100% + 2px);max-width:none;transition:opacity .35s}
-.jobs #genesis.live>img{opacity:0}
-.jobs figcaption{margin-top:var(--s2);color:var(--soft)}
-.jobs figcaption img{display:inline-block;width:auto;height:var(--h);margin-right:2px;vertical-align:middle}
+.jobs .ph{position:relative;aspect-ratio:16/9;max-height:calc(100svh - 300px);width:100%;border-radius:22px;overflow:hidden;background:var(--night)}
+.jobs figcaption{display:flex;align-items:center;gap:var(--s3);margin-top:var(--s3);font-size:var(--t1);line-height:1.3;color:var(--ink)}
+.jobs figcaption img{flex:none;width:auto;height:calc(var(--h) * 1.75)}
 
 /* Where it goes: two big pictures, then three, with the name under each, all on one screen */
 .apps{height:100svh;min-height:520px;padding:var(--s5) 0 0;display:grid;grid-template-rows:auto minmax(0,1fr);justify-content:stretch}
@@ -126,21 +120,23 @@ section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction
 
 /* Why lasers beat LED: the catalog's own comparison, one row at a time, in one light weight */
 .why{background:var(--night);color:#fff}
-.why .intro{max-width:none;margin-bottom:var(--air)}
+.why .intro{max-width:none;margin-bottom:var(--s6)}
 .why h2.big{font-size:var(--t5)}
 .why .dim{color:#7d7d7d}
 .vs{width:100%;border-collapse:collapse;table-layout:fixed}
 .vs th,.vs td{padding:calc(var(--air) * .8) var(--s3) calc(var(--air) * .8) 0;text-align:left;font-size:var(--t1);font-weight:400;line-height:1.3;vertical-align:middle}
-.vs thead th{padding-top:0;font-size:var(--t0);font-weight:600;color:var(--pale)}
+.vs thead th{padding-top:0;padding-bottom:var(--s3);font-size:var(--t1);font-weight:600;color:var(--pale)}
 .vs thead .las{color:#fff}
-.vs .side{width:24%;font-size:var(--t0);color:var(--pale)}
 .vs tbody td{color:#989898}
 .vs tbody td.las{color:#fff}
 .vs tbody tr>*{border-top:1px solid rgba(255,255,255,.1)}
 .vs th:last-child,.vs td:last-child{padding-right:0}
-.strip{display:block;height:8px;margin-bottom:var(--s2);border-radius:4px}
+.strip{position:relative;display:block;height:6px;margin-bottom:var(--s4);border-radius:3px}
 .strip.dots{background:radial-gradient(circle at center,#ffe9dc 0 2.5px,rgba(255,205,180,.3) 4px,transparent 8px) left center/24px 100% round}
-.strip.beam{background:linear-gradient(90deg,#e23bff,#5a5bff,#19d3ff,#5a5bff,#e23bff) 0 0/300% 100%;box-shadow:0 0 14px 2px rgba(226,59,255,.8),0 0 40px 8px rgba(90,91,255,.6),0 0 90px 18px rgba(25,211,255,.32);animation:flow 12s linear infinite}
+.strip.beam{background:linear-gradient(90deg,#e23bff,#5a5bff,#19d3ff,#5a5bff,#e23bff) 0 0/300% 100%;animation:flow 30s linear infinite}
+.strip.beam::before,.strip.beam::after{content:'';position:absolute;border-radius:inherit;background:inherit;background-size:inherit;animation:inherit;pointer-events:none}
+.strip.beam::before{inset:-3px 0;filter:blur(7px)}
+.strip.beam::after{inset:-12px -8px;filter:blur(26px);opacity:.75}
 
 /* Engines: a real photo of each on stage. Full specs is a button of its own and opens over the card, so the section never grows */
 .show{background:var(--tint)}
@@ -157,7 +153,8 @@ section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction
 .card .spec{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);padding:var(--s2) 0;border-top:1px solid rgba(24,24,24,.1);border-bottom:1px solid rgba(24,24,24,.1)}
 .card ul{min-width:0}
 .card ul li{font-size:var(--t-h);line-height:1.5;color:var(--soft)}
-.card .won{flex:none;width:84px;height:auto;padding:5px;border-radius:50%;background:var(--night)}
+.card .ph{position:relative}
+.card .ph .won{position:absolute;inset:auto var(--s2) var(--s2) auto;width:calc(var(--u) * 5);height:auto;object-fit:contain;filter:drop-shadow(0 2px 10px rgba(0,0,0,.7))}
 .card .row{margin-top:auto;display:flex;flex-wrap:wrap;gap:var(--s1)}
 .card .row .btn{flex:999 0 auto}
 .card .row details{flex:1 0 auto}
@@ -264,7 +261,7 @@ footer{padding:var(--s5) var(--m);background:var(--night);color:var(--pale);font
   .card .tx{padding:var(--s2) var(--s3)}
   .card .tx{gap:var(--s1)}
   .card .spec{padding:var(--s1) 0}
-  .card .won{width:64px;padding:4px}
+  .card .ph .won{width:52px;inset:auto 6px 6px auto}
   .card dl{bottom:calc(var(--s2) + 44px + var(--s1))}
   .say-it{line-height:1.8}
   .looks .tile{height:40px}
@@ -282,7 +279,7 @@ footer{padding:var(--s5) var(--m);background:var(--night);color:var(--pale);font
   .top nav a:not(.rent):not(.go):not([href="#products"]):not([href="#questions"]){display:none}
   .stage{flex-direction:column;align-items:stretch}
   .pic{position:relative;inset:auto;flex:1 1 auto;order:-1;min-height:34svh}
-  .pic>img:first-child,.herov{object-position:var(--phone-x,62%) 62%}
+  .pic>img:first-child{object-position:var(--phone-x,62%) 62%}
   .marks{flex-direction:row;align-items:center;justify-content:space-between}
   .marks .seal{width:72px}
   .pic::after{background:linear-gradient(180deg,var(--hero),transparent max(14%,48px),transparent 66%,var(--hero) 96%)}
@@ -328,10 +325,8 @@ footer{padding:var(--s5) var(--m);background:var(--night);color:var(--pale);font
   .wall figcaption{padding:var(--s1) var(--s2);font-size:var(--t0)}
   .vs,.vs tbody,.vs thead{display:block}
   .vs tr{display:grid;grid-template-columns:1fr 1fr;gap:0 var(--s2)}
-  .vs thead td{display:none}
   .vs th,.vs td{padding:0 0 var(--s1);font-size:var(--t0)}
   .vs thead th{padding-bottom:var(--s1);font-size:var(--t-h)}
-  .vs tbody .side{grid-column:1/-1;width:auto;padding-top:var(--s1);padding-bottom:2px;font-size:var(--t-1)}
   .vs tbody tr>*{border-top:0}
   .vs tbody tr{border-top:1px solid rgba(255,255,255,.1)}
   .eng{grid-template-columns:minmax(0,1fr);gap:var(--s2)}
@@ -374,7 +369,6 @@ footer{padding:var(--s5) var(--m);background:var(--night);color:var(--pale);font
   .tick img{height:calc(var(--h) * 1.3)}
   .band{--g:clamp(72px,6vw,136px)}
   .card .ph{height:clamp(120px,27svh,420px)}
-  .card .won{width:110px}
   .acts .btn{min-height:56px}
 }
 
@@ -452,11 +446,11 @@ html:not(.js) .tick>div{animation:none}
     <div class="say">
       <h1><span>Powered by <em class="laser" style="font-style:normal">lasers</em></span> <span class="next">Fueled by your imagination</span></h1>
       <p class="own">Leave the implementation and installation to us</p>
-      <div class="acts"><a class="btn" href="#quote">Request a Quote</a><a class="btn line" href="#quote" id="consult">Book a consult</a><a class="btn ghost" href="#install">How it installs</a></div>
+      <div class="acts"><a class="btn" href="#quote">Request a Quote</a><a class="btn line" href="#quote" id="consult">Book a consult</a></div>
       <div class="marks"><p><svg aria-hidden="true"><use href="#i-shield"/></svg>FDA certified</p><img class="seal" src="assets/w/award.webp" decoding="async" alt="Best New Product Award Winner, Special Effects, LDI 2024"></div>
     </div>
     <div class="pic">
-      <img src="assets/w/hero-1920.webp" srcset="assets/w/hero-828.webp 828w, assets/w/hero-1280.webp 1280w, assets/w/hero-1920.webp 1920w, assets/w/hero-2800.webp 2800w" sizes="(max-width:640px) 205vw, (max-width:1040px) 150vw, 100vw" fetchpriority="high" alt="A two-story luxury home at dusk with cyan fiber light along its roof and magenta fiber light around its pool"><video class="herov" muted loop playsinline preload="none" aria-hidden="true"><source src="assets/hero-wide.mp4" type="video/mp4" media="(min-width:1100px)"><source src="assets/hero-small.mp4" type="video/mp4"></video>
+      <img src="assets/w/hero-1920.webp" srcset="assets/w/hero-828.webp 828w, assets/w/hero-1280.webp 1280w, assets/w/hero-1920.webp 1920w, assets/w/hero-2800.webp 2800w" sizes="(max-width:640px) 205vw, (max-width:1040px) 150vw, 100vw" fetchpriority="high" alt="A two-story luxury home at dusk with cyan fiber light along its roof and magenta fiber light around its pool">
     </div>
   </div>
   <div class="strip-row">
@@ -476,11 +470,11 @@ html:not(.js) .tick>div{animation:none}
 </div>
 
 <main>
-<section>
+<section class="work">
   <div class="intro rise"><h2>Recent projects</h2></div>
   <div class="jobs">
     <figure class="rise"><div class="ph"><video poster="assets/w/promedica-poster.webp" muted loop playsinline preload="none" aria-label="The ProMedica building in Ohio, outlined in green fiber at night"><source src="assets/promedica-1080.mp4" type="video/mp4" media="(min-width:641px)"><source src="assets/promedica-720.mp4" type="video/mp4"></video></div><figcaption><img src="assets/clients/promedica.svg" alt="ProMedica" style="--h:21px"> building in Ohio, 302 ft of fiber on three LF40 IP systems</figcaption></figure>
-    <figure class="rise"><div class="ph" id="genesis"><img src="assets/w/genesis-film-960.webp" srcset="assets/w/genesis-film-640.webp 640w, assets/w/genesis-film-960.webp 960w, assets/w/genesis-film-1400.webp 1400w" sizes="(max-width:1040px) 100vw, 50vw" alt="A Genesis GV80 under a red line of light, from the commercial"></div><figcaption><img src="assets/clients/genesis.svg" alt="Genesis" style="--h:30px"> GV80 commercial, 1,200 strand fiber lit by 8 LF120 engines</figcaption></figure>
+    <figure class="rise"><div class="ph" id="genesis"><img src="assets/w/genesis-crop.webp" alt="A Genesis GV80 under a red line of light, from the commercial"></div><figcaption><img src="assets/clients/genesis.svg" alt="Genesis" style="--h:30px"> GV80 commercial, 1,200 strand fiber lit by 8 LF120 engines</figcaption></figure>
   </div>
 </section>
 
@@ -498,14 +492,14 @@ html:not(.js) .tick>div{animation:none}
 <section class="why">
   <div class="intro rise"><h2 class="big">Why <em class="laser" style="font-style:normal">lasers</em> beat <span class="dim">LED</span></h2></div>
   <table class="vs rise">
-    <thead><tr><td class="side"></td><th scope="col" class="led"><i class="strip dots" aria-hidden="true"></i>Traditional LED</th><th scope="col" class="las"><i class="strip beam" aria-hidden="true"></i>Jagoteq laser fiber</th></tr></thead>
+    <thead><tr><th scope="col" class="led"><i class="strip dots" aria-hidden="true"></i>Traditional LED</th><th scope="col" class="las"><i class="strip beam" aria-hidden="true"></i>Jagoteq laser fiber</th></tr></thead>
     <tbody>
-      <tr><th scope="row" class="side">Color</th><td>Pastel look</td><td class="las">3x the color saturation</td></tr>
-      <tr><th scope="row" class="side">Light</th><td>Dark spots</td><td class="las">Even 360° glow</td></tr>
-      <tr><th scope="row" class="side">Water</th><td>Short circuits in humid places</td><td class="las">100% immersible</td></tr>
-      <tr><th scope="row" class="side">Run length</th><td>15 ft per controller</td><td class="las">32 to 100 ft per engine</td></tr>
-      <tr><th scope="row" class="side">Long-term cost</th><td>Higher utility bills</td><td class="las">Better cost over time</td></tr>
-      <tr><th scope="row" class="side">After the job</th><td>Single use, then landfill</td><td class="las">Reusable, 100% recyclable</td></tr>
+      <tr><td>Pastel look</td><td class="las">3x the color saturation</td></tr>
+      <tr><td>Dark spots</td><td class="las">Even 360° glow</td></tr>
+      <tr><td>Short circuits in humid places</td><td class="las">100% immersible</td></tr>
+      <tr><td>15 ft per controller</td><td class="las">32 to 100 ft per engine</td></tr>
+      <tr><td>Higher utility bills</td><td class="las">Better cost over time</td></tr>
+      <tr><td>Single use, then landfill</td><td class="las">Reusable, 100% recyclable</td></tr>
     </tbody>
   </table>
 </section>
@@ -514,18 +508,18 @@ html:not(.js) .tick>div{animation:none}
   <div class="intro rise"><h2>Choose the engine that lights your project</h2><p>Pick by where it’s going: the big one, the compact one or the tough one</p></div>
   <div class="eng">
     <article class="card rise">
-      <div class="ph"><img src="assets/w/e-lf120-800.webp" srcset="assets/w/e-lf120-480.webp 480w, assets/w/e-lf120-800.webp 800w" sizes="(max-width:1040px) 100vw, 34vw" alt="The LF120 laser engine on a truss, with glowing purple fiber" loading="lazy"></div>
+      <div class="ph"><img src="assets/w/e-lf120-800.webp" srcset="assets/w/e-lf120-480.webp 480w, assets/w/e-lf120-800.webp 800w" sizes="(max-width:1040px) 100vw, 34vw" alt="The LF120 laser engine on a truss, with glowing purple fiber" loading="lazy"><img class="won" src="assets/w/award.webp" alt="Best New Product, Special Effects, LDI 2024" loading="lazy"></div>
       <div class="tx"><div class="who"><p class="tag">The big one</p><h3>LF120</h3></div>
         <p class="for">For film sets, live events and indoor spaces</p>
-        <div class="spec"><ul><li>3x the power of the LF40</li><li>Quiet enough for film sets</li><li>Controlled through DMX or Ethernet</li></ul><img class="won" src="assets/w/award.webp" alt="Best New Product, Special Effects, LDI 2024" loading="lazy"></div>
+        <div class="spec"><ul><li>3x the power of the LF40</li><li>Quiet enough for film sets</li><li>Controlled through DMX or Ethernet</li></ul></div>
         <div class="row"><a class="btn" href="#quote" data-engine="LF120">Quote <span>the LF120</span></a>
         <details><summary>Full specs</summary><dl><dt>Size</dt><dd>10” x 9.5” x 14.75”, 27.5 lbs</dd><dt>Power</dt><dd>12W, 5A</dd><dt>Control</dt><dd>5-pin DMX, e-DMX (Art-Net/sACN)</dd><dt>Color</dt><dd>RGBI, CCT, HSI, effects, presets log</dd><dt>Noise</dt><dd>45dB max</dd></dl></details></div></div>
     </article>
     <article class="card rise">
-      <div class="ph"><img src="assets/w/e-lf40-800.webp" srcset="assets/w/e-lf40-480.webp 480w, assets/w/e-lf40-800.webp 800w" sizes="(max-width:1040px) 100vw, 34vw" alt="The LF40 laser engine on a truss, with glowing blue fiber" loading="lazy"></div>
+      <div class="ph"><img src="assets/w/e-lf40-800.webp" srcset="assets/w/e-lf40-480.webp 480w, assets/w/e-lf40-800.webp 800w" sizes="(max-width:1040px) 100vw, 34vw" alt="The LF40 laser engine on a truss, with glowing blue fiber" loading="lazy"><img class="won" src="assets/w/award.webp" alt="Best New Product, Special Effects, LDI 2024" loading="lazy"></div>
       <div class="tx"><div class="who"><p class="tag">The compact one</p><h3>LF40</h3></div>
         <p class="for">For smaller jobs you can carry</p>
-        <div class="spec"><ul><li>Just 3 lbs</li><li>Runs on a 12V battery or wall power</li><li>Quiet enough for film sets</li></ul><img class="won" src="assets/w/award.webp" alt="Best New Product, Special Effects, LDI 2024" loading="lazy"></div>
+        <div class="spec"><ul><li>Just 3 lbs</li><li>Runs on a 12V battery or wall power</li><li>Quiet enough for film sets</li></ul></div>
         <div class="row"><a class="btn" href="#quote" data-engine="LF40">Quote <span>the LF40</span></a>
         <details><summary>Full specs</summary><dl><dt>Size</dt><dd>7.5” x 4” x 7”, 3 lbs</dd><dt>Power</dt><dd>4W, 2A</dd><dt>Control</dt><dd>5-pin DMX, e-DMX. W-DMX and Bluetooth on request</dd><dt>Color</dt><dd>RGBI, CCT, HSI, effects, presets log</dd><dt>Noise</dt><dd>45dB max</dd></dl></details></div></div>
     </article>
@@ -653,20 +647,7 @@ const rentOpen=()=>{if(location.hash==='#rent')$('rent').open=true};addEventList
 document.querySelector('a[href="#rent"]').addEventListener('click',()=>{$('rent').open=true});
 
 const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
-{const hv=document.querySelector('.herov');hv.addEventListener('playing',()=>hv.classList.add('on'),{once:true});
- const v=document.querySelector('.jobs video'),go=()=>{hv.preload='auto';hv.play().catch(()=>{});v.preload='auto';v.play().catch(()=>{})};document.readyState==='complete'?go():addEventListener('load',go,{once:true})}
-
-/* The Genesis film plays in its box. The player is enlarged so YouTube's own title and buttons sit outside the box, which lets the still
-   drop the moment the film runs. It comes back before the end screen, so the film loops with no player showing. YouTube needs a web address, so an opened file keeps the still */
-if(location.protocol.startsWith('http')){const box=$('genesis'),host=document.createElement('div');host.id='gfilm';box.prepend(host);
- let timer,turning=false;const show=()=>{clearTimeout(timer);timer=setTimeout(()=>box.classList.add('live'),200)};
- window.onYouTubeIframeAPIReady=()=>{const p=new YT.Player('gfilm',{videoId:'ZA-BQZFrXyE',host:'https://www.youtube-nocookie.com',playerVars:{autoplay:1,mute:1,controls:0,disablekb:1,fs:0,iv_load_policy:3,cc_load_policy:0,playsinline:1,rel:0,origin:location.origin},events:{
-   onReady:e=>{e.target.mute();e.target.playVideo()},
-   onStateChange:e=>{if(e.data===YT.PlayerState.PLAYING){try{p.unloadModule('captions');p.unloadModule('cc')}catch(_){}if(!box.classList.contains('live'))show()}else{clearTimeout(timer);box.classList.remove('live')}}}});
-  const f=p.getIframe();f.tabIndex=-1;f.inert=true;f.setAttribute('aria-hidden','true');
-  window.__film=p;setInterval(()=>{if(!p.getDuration||!p.getDuration())return;if(!turning&&p.getDuration()-p.getCurrentTime()<10){turning=true;clearTimeout(timer);box.classList.remove('live');setTimeout(()=>{p.seekTo(0,true);turning=false;show()},900)}},500)};
- const yt=()=>{const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';document.head.append(s)};
- document.readyState==='complete'?yt():addEventListener('load',yt,{once:true})}
+{const vs=document.querySelectorAll('.jobs video'),go=()=>vs.forEach(v=>{v.preload='auto';v.play().catch(()=>{})});document.readyState==='complete'?go():addEventListener('load',go,{once:true})}
 
 /* Smooth jumps for the page's own links. This lives here and not in the CSS, because CSS smooth scrolling breaks the scroll pin */
 /* A jump finishes when the browser says the scroll has ended, then corrects any last gap. Scrolling by hand cancels it */

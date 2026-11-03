@@ -17,7 +17,6 @@
     P=t;
     const step=t>=.86&&(!narrow.matches||still)?-1:Math.min(4,Math.round(t/.8*4));
     list.forEach((li,j)=>li.classList.toggle('on',step<0||j===step));
-    if(draw)draw(t);
   }
   place(P);window.__rig={place};
 
@@ -138,7 +137,9 @@
   new ResizeObserver(size).observe(canvas.parentElement);size();
   let inView=true;
   new IntersectionObserver(e=>{inView=e[e.length-1].isIntersecting}).observe(canvas);
+  let E=P,last=0;
   function frame(ms){requestAnimationFrame(frame);if(!inView)return;
+    const dt=Math.min(.05,(ms-last)/1000||.016);last=ms;E+=(P-E)*(1-Math.exp(-dt*2.6));draw(E);
     const s=ms/1000,c=new THREE.Color().setHSL(still?.27:(.27+s*.04)%1,.9,.55);
     halos.forEach(m=>m.uniforms.c.value.copy(c));wash.material.color.copy(c);fill.color.copy(c);
     pulses.forEach(p=>{const u=(s*.12+p.userData.o)%1;p.position.copy(darkPath.getPointAt(u));p.position.y+=.03});
@@ -160,7 +161,7 @@
   if(!window.gsap||!window.ScrollTrigger)return giveUp();
   gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ignoreMobileResize:true});
-  pin=ScrollTrigger.create({trigger:'#rig',start:'top top',end:'+=240%',pin:true,scrub:true,onUpdate:s=>place(s.progress)});
+  pin=ScrollTrigger.create({trigger:'#rig',start:'top top',end:'+=460%',pin:true,scrub:true,onUpdate:s=>place(s.progress)});
   /* A refresh remeasures the page by scrolling to the top and back, so the pin keeps its place and a jump in progress finishes */
   /* The reader's place is saved on every scroll and frozen once a phone has turned, because by then the browser has already moved the page */
   let keep=null,mark=null,ready=false,saved=null;
