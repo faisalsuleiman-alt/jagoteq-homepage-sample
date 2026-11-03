@@ -7,6 +7,9 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="data:,">
 <link rel="preload" as="image" type="image/webp" href="assets/w/hero-1920.webp" imagesrcset="assets/w/hero-828.webp 828w, assets/w/hero-1280.webp 1280w, assets/w/hero-1920.webp 1920w, assets/w/hero-2800.webp 2800w" imagesizes="(max-width:640px) 205vw, (max-width:1040px) 150vw, 100vw" fetchpriority="high">
+<link rel="preconnect" href="https://www.youtube.com">
+<link rel="preconnect" href="https://www.youtube-nocookie.com">
+<link rel="preconnect" href="https://i.ytimg.com">
 <link rel="preload" as="font" type="font/woff2" href="assets/figtree.woff2" crossorigin>
 <meta name="description" content="Sample homepage for Jagoteq, prepared by Faisal Suleiman.">
 <style>
@@ -105,6 +108,9 @@ section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction
 .jobs{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5)}
 .jobs figure{min-width:0}
 .jobs .ph{position:relative;aspect-ratio:16/9;max-height:calc(100svh - 300px);width:100%;border-radius:22px;overflow:hidden;background:var(--night)}
+.jobs iframe{position:absolute;left:-10%;top:-10%;width:120%;height:120%;border:0;pointer-events:none}
+.jobs #genesis>img{position:absolute;inset:-1px;z-index:1;width:calc(100% + 2px);height:calc(100% + 2px);max-width:none;transition:opacity .8s}
+.jobs #genesis.live>img{opacity:0}
 .jobs figcaption{display:flex;align-items:center;gap:var(--s3);margin-top:var(--s3);font-size:var(--t1);line-height:1.3;color:var(--ink)}
 .jobs figcaption img{flex:none;width:auto;height:calc(var(--h) * 1.75)}
 
@@ -474,7 +480,7 @@ html:not(.js) .tick>div{animation:none}
   <div class="intro rise"><h2>Recent projects</h2></div>
   <div class="jobs">
     <figure class="rise"><div class="ph"><video poster="assets/w/promedica-poster.webp" muted loop playsinline preload="none" aria-label="The ProMedica building in Ohio, outlined in green fiber at night"><source src="assets/promedica-1080.mp4" type="video/mp4" media="(min-width:641px)"><source src="assets/promedica-720.mp4" type="video/mp4"></video></div><figcaption><img src="assets/clients/promedica.svg" alt="ProMedica" style="--h:21px"> building in Ohio, 302 ft of fiber on three LF40 IP systems</figcaption></figure>
-    <figure class="rise"><div class="ph" id="genesis"><video poster="assets/w/genesis-crop.webp" muted loop playsinline preload="none" aria-label="A Genesis GV80 under a ribbon of red light"><source src="assets/genesis-1080.mp4" type="video/mp4" media="(min-width:641px)"><source src="assets/genesis-720.mp4" type="video/mp4"></video></div><figcaption><img src="assets/clients/genesis.svg" alt="Genesis" style="--h:30px"> GV80 commercial, 1,200 strand fiber lit by 8 LF120 engines</figcaption></figure>
+    <figure class="rise"><div class="ph" id="genesis"><img src="assets/w/genesis-film-960.webp" srcset="assets/w/genesis-film-640.webp 640w, assets/w/genesis-film-960.webp 960w, assets/w/genesis-film-1400.webp 1400w" sizes="(max-width:1040px) 100vw, 50vw" alt="A Genesis GV80 under a red line of light, from the commercial"></div><figcaption><img src="assets/clients/genesis.svg" alt="Genesis" style="--h:30px"> GV80 commercial, 1,200 strand fiber lit by 8 LF120 engines</figcaption></figure>
   </div>
 </section>
 
@@ -648,6 +654,18 @@ document.querySelector('a[href="#rent"]').addEventListener('click',()=>{$('rent'
 
 const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 {const vs=document.querySelectorAll('.jobs video'),go=()=>vs.forEach(v=>{v.preload='auto';v.play().catch(()=>{})});document.readyState==='complete'?go():addEventListener('load',go,{once:true})}
+
+/* The Genesis film plays in its box. The player is enlarged so YouTube's own title and buttons sit outside the box, which lets the still
+   drop the moment the film runs. It comes back before the end screen, so the film loops with no player showing. YouTube needs a web address, so an opened file keeps the still */
+if(location.protocol.startsWith('http')){const box=$('genesis'),host=document.createElement('div');host.id='gfilm';box.prepend(host);
+ let timer,turning=false;const show=()=>{clearTimeout(timer);timer=setTimeout(()=>box.classList.add('live'),3800)};
+ window.onYouTubeIframeAPIReady=()=>{const p=new YT.Player('gfilm',{videoId:'ZA-BQZFrXyE',host:'https://www.youtube-nocookie.com',playerVars:{autoplay:1,mute:1,controls:0,disablekb:1,fs:0,iv_load_policy:3,cc_load_policy:0,playsinline:1,rel:0,origin:location.origin},events:{
+   onReady:e=>{e.target.mute();e.target.playVideo()},
+   onStateChange:e=>{if(e.data===YT.PlayerState.PLAYING){try{p.unloadModule('captions');p.unloadModule('cc')}catch(_){}if(!box.classList.contains('live'))show()}else{clearTimeout(timer);box.classList.remove('live')}}}});
+  const f=p.getIframe();f.tabIndex=-1;f.inert=true;f.setAttribute('aria-hidden','true');
+  window.__film=p;setInterval(()=>{if(!p.getDuration||!p.getDuration())return;if(!turning&&p.getDuration()-p.getCurrentTime()<10){turning=true;clearTimeout(timer);box.classList.remove('live');setTimeout(()=>{p.seekTo(0,true);turning=false;show()},900)}},500)};
+ const yt=()=>{const s=document.createElement('script');s.src='https://www.youtube.com/iframe_api';document.head.append(s)};
+ document.readyState==='complete'?yt():addEventListener('load',yt,{once:true})}
 
 /* Smooth jumps for the page's own links. This lives here and not in the CSS, because CSS smooth scrolling breaks the scroll pin */
 /* A jump finishes when the browser says the scroll has ended, then corrects any last gap. Scrolling by hand cancels it */
