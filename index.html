@@ -23,9 +23,10 @@
    --t3h and --t1h are half a step up, for the front page headline and the line under it.
    SPACING. Steps of 8: --s1 8, --s2 16, --s3 24, --s4 32, --s5 48, --s6 64, --s7 96, --s8 128. */
 :root{
-  --u:clamp(16px,.6vw + 9.4px,20px);
+  --u:clamp(16px,.62vw + 9px,26px);
   --t-1:max(13px,calc(var(--u) * .75));--t-h:calc(var(--t-1) * 1.155);--t1h:calc(var(--u) * 1.54);--t3h:calc(var(--u) * 2.736);--t0:var(--u);--t1:calc(var(--u) * 1.333);--t2:calc(var(--u) * 1.777);--t3:calc(var(--u) * 2.369);--t4:calc(var(--u) * 3.157);--t5:calc(var(--u) * 4.209);
   --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:48px;--s6:64px;--s7:96px;--s8:128px;
+  --air:clamp(16px,3.4svh,56px);
   --m:clamp(20px,4vw,64px);
   --ink:#181818;--soft:#525252;--tint:#f5f5f5;--night:#131313;--hero:#08131f;--phone-x:100%;--part:#141414;--green:#92c83e;--green2:#a6da4f;--go:#86ea3c;--go2:#a2f561;--pale:#d0d0d0;
   --ease:cubic-bezier(.16,1,.3,1);
@@ -57,22 +58,25 @@ h3{font-size:var(--t2);letter-spacing:-.02em}
 .top nav a.go{font-weight:800;color:var(--go)}
 .top nav a.go:hover{color:var(--go2)}
 .stage{position:relative;display:flex;align-items:center;min-height:0;overflow:hidden}
-.say{position:relative;z-index:1;width:min(40%,600px);padding:var(--s4) 0 var(--s4) var(--m)}
+.say{position:relative;z-index:1;width:min(44%,calc(var(--u) * 33));padding:var(--s4) 0 var(--s4) var(--m)}
 h1{font-size:var(--t3h);line-height:1.06;letter-spacing:-.03em;text-wrap:initial}
 h1 span{display:block}
 h1 .next{margin-top:var(--s1);font-size:var(--t1h);line-height:1.15;letter-spacing:-.015em;color:var(--pale);font-weight:600}
 h1 .laser{display:inline;background:linear-gradient(90deg,#e23bff,#5a5bff,#19d3ff,#54ff9f,#e23bff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:flow 9s linear infinite}
 @keyframes flow{to{background-position:-300% 0}}
-.acts{margin-top:var(--s4);display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center}
+.own{margin-top:var(--s3);font-size:var(--t1);font-weight:600;line-height:1.25;color:#fff}
+.acts{margin-top:var(--s3);display:flex;flex-wrap:wrap;gap:var(--s2);align-items:center}
 .acts .btn{min-height:44px;padding:0 var(--s3)}
 .acts .ghost{padding:0 var(--s1)}
+.btn.line{background:none;color:#fff;box-shadow:inset 0 0 0 2px var(--go)}
+.btn.line:hover{background:var(--go);color:var(--ink)}
 .strip-row{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);padding:var(--s1) var(--m) var(--s3)}
-.marks{display:flex;align-items:center;gap:var(--s2);margin-top:var(--s3)}
+.marks{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s2);margin-top:var(--s3)}
 .marks p{display:flex;align-items:center;gap:var(--s1);font-size:var(--t-h);font-weight:600;line-height:1.2;white-space:nowrap}
 .marks svg{flex:none;width:26px;height:26px;fill:none;stroke:var(--green2);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .pic{position:absolute;inset:0}
 .pic>img:first-child{position:absolute;inset:0;object-position:100% 62%}
-.pic .seal{position:absolute;z-index:1;right:var(--m);bottom:var(--s2);width:96px;height:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
+.marks .seal{width:calc(var(--u) * 6);height:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
 .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--hero),transparent 10%,transparent 88%,var(--hero))}
 .pic>img:first-child{object-position:100% 50%}
 .pic::after{background:linear-gradient(180deg,var(--hero),transparent 11%,transparent 90%,var(--hero)),linear-gradient(90deg,rgba(8,19,31,.86),rgba(8,19,31,.62) 30%,rgba(8,19,31,0) 52%)}
@@ -120,8 +124,11 @@ section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction
 
 /* Why lasers beat LED: the catalog's own comparison, one row at a time, in one light weight */
 .why{background:var(--night);color:#fff}
+.why .intro{max-width:none;margin-bottom:var(--air)}
+.why h2.big{font-size:var(--t5)}
+.why .dim{color:#7d7d7d}
 .vs{width:100%;border-collapse:collapse;table-layout:fixed}
-.vs th,.vs td{padding:var(--s2) var(--s3) var(--s2) 0;text-align:left;font-size:var(--t1);font-weight:400;line-height:1.3;vertical-align:middle}
+.vs th,.vs td{padding:calc(var(--air) * .8) var(--s3) calc(var(--air) * .8) 0;text-align:left;font-size:var(--t1);font-weight:400;line-height:1.3;vertical-align:middle}
 .vs thead th{padding-top:0;font-size:var(--t0);font-weight:600;color:var(--pale)}
 .vs thead .las{color:#fff}
 .vs .side{width:24%;font-size:var(--t0);color:var(--pale)}
@@ -129,13 +136,14 @@ section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction
 .vs tbody td.las{color:#fff}
 .vs tbody tr>*{border-top:1px solid rgba(255,255,255,.1)}
 .vs th:last-child,.vs td:last-child{padding-right:0}
-.strip{display:block;height:6px;margin-bottom:var(--s2);border-radius:3px}
-.strip.dots{background:radial-gradient(circle at center,#ffe9dc 0 2.5px,rgba(255,205,180,.3) 4px,transparent 8px) left center/24px 100% repeat-x}
-.strip.beam{background:linear-gradient(90deg,#e23bff,#5a5bff,#19d3ff,#5a5bff,#e23bff) 0 0/300% 100%;box-shadow:0 0 12px rgba(90,91,255,.7);animation:flow 12s linear infinite}
+.strip{display:block;height:8px;margin-bottom:var(--s2);border-radius:4px}
+.strip.dots{background:radial-gradient(circle at center,#ffe9dc 0 2.5px,rgba(255,205,180,.3) 4px,transparent 8px) left center/24px 100% round}
+.strip.beam{background:linear-gradient(90deg,#e23bff,#5a5bff,#19d3ff,#5a5bff,#e23bff) 0 0/300% 100%;box-shadow:0 0 14px 2px rgba(226,59,255,.8),0 0 40px 8px rgba(90,91,255,.6),0 0 90px 18px rgba(25,211,255,.32);animation:flow 12s linear infinite}
 
 /* Engines: a real photo of each on stage. Full specs is a button of its own and opens over the card, so the section never grows */
 .show{background:var(--tint)}
 .show .intro{max-width:none}
+.show .intro p{font-weight:500;color:var(--ink)}
 .eng{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3)}
 .card{position:relative;display:flex;flex-direction:column;background:#fff;color:var(--ink);border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(19,19,19,.06),0 10px 28px rgba(19,19,19,.06)}
 .card .ph{flex:none;height:clamp(120px,26svh,280px);background:#000}
@@ -163,7 +171,7 @@ section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction
 .card dd{color:#fff}
 
 /* Find your setup: one sentence, the real thicknesses to choose from, a slider for the length, one answer */
-.say-it{font-size:var(--t1);font-weight:500;line-height:2}
+.say-it{font-size:var(--t2);font-weight:500;line-height:1.9}
 .say-it select,.say-it .box,.say-it #other{font:inherit;color:var(--ink);padding:1px 12px;margin:0 2px;border:0;border-radius:8px;background-color:#f8f8f8;box-shadow:inset 0 0 0 1px #b4d786;transition:background-color .2s,transform .25s var(--ease)}
 .say-it select{padding-right:34px;cursor:pointer;-webkit-appearance:none;appearance:none;background:#f8f8f8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M5 9l7 7 7-7' fill='none' stroke='%23141917' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 10px center/16px}
 .say-it select:hover,.say-it .box:hover{background-color:#e8f4d5;transform:translateY(-1px)}
@@ -174,9 +182,9 @@ section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction
 .say-it.on select{animation:nudge .9s var(--ease) .9s 1}
 .say-it.on select:nth-of-type(2){animation-delay:1.05s}
 @keyframes nudge{40%{transform:translateY(-4px)}}
-.looks{display:grid;grid-template-columns:repeat(8,1fr);gap:var(--s2);margin-top:var(--s2)}
+.looks{display:grid;grid-template-columns:repeat(8,1fr);gap:var(--s3);margin-top:var(--air)}
 .looks button{align-self:start;padding:0;background:none;border:0;font:inherit;color:var(--ink);text-align:center;cursor:pointer}
-.looks .tile{display:flex;align-items:center;height:44px;margin-bottom:6px;background:var(--night);border-radius:6px;overflow:hidden;transition:transform .25s var(--ease)}
+.looks .tile{display:flex;align-items:center;height:clamp(44px,7svh,96px);margin-bottom:var(--s1);background:var(--night);border-radius:6px;overflow:hidden;transition:transform .25s var(--ease)}
 .looks button:hover .tile{transform:translateY(-2px)}
 .looks button[aria-checked="true"] .tile{outline:2px solid var(--green);outline-offset:2px}
 .looks .bar{display:block;width:100%;height:calc(var(--mm) * 2px);background:#f2ffe0;box-shadow:0 0 8px var(--green2),0 0 18px var(--green)}
@@ -184,12 +192,12 @@ section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction
 .looks .mesh{height:100%;background:repeating-linear-gradient(45deg,transparent 0 6px,#c5ec80 6px 7px),repeating-linear-gradient(-45deg,transparent 0 6px,#c5ec80 6px 7px);box-shadow:none}
 .looks b{display:block;font-size:var(--t-1);font-weight:600;line-height:1.25}
 .looks small{display:block;font-size:var(--t-1);line-height:1.25;color:var(--soft)}
-.len{display:block;margin-top:var(--s3)}
+.len{display:block;margin-top:var(--air)}
 .len input{-webkit-appearance:none;appearance:none;display:block;width:100%;height:6px;border-radius:3px;background:linear-gradient(90deg,var(--green) var(--p,15%),#e7e7e7 var(--p,15%));cursor:grab}
 .len input::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:0 0 0 2px var(--green),0 2px 6px rgba(0,0,0,.2)}
 .len input::-moz-range-thumb{width:22px;height:22px;border:0;border-radius:50%;background:#fff;box-shadow:0 0 0 2px var(--green),0 2px 6px rgba(0,0,0,.2)}
 .ends{display:flex;justify-content:space-between;margin-top:var(--s1);font-size:var(--t-1);color:var(--soft)}
-.answer{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s4);align-items:center;margin-top:var(--s3);padding:var(--s2) var(--s3);background:var(--tint);border-radius:10px}
+.answer{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s4);align-items:center;margin-top:var(--air);padding:var(--s3) var(--s4);background:var(--tint);border-radius:10px}
 .answer b{display:block;font-size:var(--t2);font-weight:700;line-height:1.15;letter-spacing:-.01em}
 .answer p{margin-top:2px;color:var(--soft)}
 .answer .btn{min-height:48px;padding:0 var(--s3)}
@@ -219,10 +227,6 @@ section{min-height:100svh;padding:var(--s6) var(--m);display:flex;flex-direction
 .rig.flat .steps li,.rig.flat .steps>p{display:block;opacity:1}
 
 /* Questions */
-.leave{min-height:0;flex-direction:row;align-items:center;justify-content:space-between;gap:var(--s5);padding-top:var(--s6);padding-bottom:var(--s6)}
-.leave p{margin-top:var(--s1);font-size:var(--t1);color:var(--soft)}
-.leave .btn{flex:none}
-@media (max-width:640px){.leave{flex-direction:column;align-items:flex-start;gap:var(--s3)}}
 .faq{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:var(--s6);align-items:start;align-content:center;background:var(--tint)}
 .faq details{background:#fff;border-radius:6px}
 .faq details+details{margin-top:var(--s1)}
@@ -277,7 +281,8 @@ footer{padding:var(--s5) var(--m);background:var(--night);color:var(--pale);font
   .stage{flex-direction:column;align-items:stretch}
   .pic{position:relative;inset:auto;flex:1 1 auto;order:-1;min-height:34svh}
   .pic>img:first-child{object-position:var(--phone-x,62%) 62%}
-  .pic .seal{width:72px;bottom:var(--s1)}
+  .marks{flex-direction:row;align-items:center;justify-content:space-between}
+  .marks .seal{width:72px}
   .pic::after{background:linear-gradient(180deg,var(--hero),transparent max(14%,48px),transparent 66%,var(--hero) 96%)}
   .say{flex:none;width:auto;padding:var(--s3) var(--m)}
   .strip-row{flex-direction:column;align-items:stretch;gap:var(--s1);padding-top:0}
@@ -357,8 +362,18 @@ footer{padding:var(--s5) var(--m);background:var(--night);color:var(--pale);font
   form textarea{min-height:72px}
 }
 @media (prefers-reduced-motion:reduce){
-  .tick>div,h1 .laser,.say-it.on select,.strip.beam{animation:none}
   .js .rise{opacity:1;transform:none;transition:none}
+}
+
+/* 27-inch screens and up */
+@media (min-width:1900px){
+  :root{--s1:11px;--s2:22px;--s3:32px;--s4:44px;--s5:64px;--s6:88px}
+  .top .logo{height:60px}
+  .tick img{height:calc(var(--h) * 1.3)}
+  .band{--g:clamp(72px,6vw,136px)}
+  .card .ph{height:clamp(120px,27svh,420px)}
+  .card .won{width:110px}
+  .acts .btn{min-height:56px}
 }
 
 /* Fixes from the page test */
@@ -377,7 +392,7 @@ html:not(.js) .tick>div{animation:none}
 @media (min-width:641px) and (max-width:949px){.card .tag{font-size:var(--t1)}}
 @media (min-width:641px) and (max-width:767px){.card .tag{min-height:2.2em}}
 @media (min-width:641px) and (max-width:1040px){.gains{display:grid;grid-template-columns:repeat(3,max-content);gap:var(--s1) var(--s4)}}
-@media (min-width:641px) and (max-width:1040px){.gains{justify-content:start}.pic .seal{width:96px}}
+@media (min-width:641px) and (max-width:1040px){.gains{justify-content:start}.marks .seal{width:88px}}
 @media (min-width:641px) and (max-width:1040px) and (max-height:840px){.quote{grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:var(--s4);padding-top:var(--s4);padding-bottom:var(--s4)}form{padding:var(--s3);gap:var(--s1) var(--s2)}form input,form select,form textarea{min-height:44px}form textarea{min-height:88px}.show{padding-top:var(--s4);padding-bottom:var(--s4)}.show .intro{margin-bottom:var(--s3)}.card .ph{height:clamp(100px,18svh,200px)}.card .tx{padding:var(--s2)}.card ul{margin-bottom:var(--s1)}}
 @media (max-width:840px){.looks b{min-height:2.5em;display:flex;align-items:flex-end;justify-content:center}}
 @media (max-width:640px){
@@ -401,7 +416,6 @@ html:not(.js) .tick>div{animation:none}
 @media (max-height:500px){.jobs .ph{max-height:none}}
 @media (max-width:640px){#setup{justify-content:flex-start}}
 @media (pointer:coarse){.len input{pointer-events:none}.len input::-webkit-slider-thumb{pointer-events:auto}.len input::-moz-range-thumb{pointer-events:auto}}
-@media (prefers-reduced-motion:reduce) and (max-width:1040px){.rig{height:auto;grid-template-rows:auto 60svh}#steps{display:block}.steps li{visibility:visible}}
 /* Public sample only */
 .sample-note{display:flex;align-items:center;min-height:32px;padding:0 var(--m);background:var(--hero);color:var(--pale);font-size:var(--t-1);line-height:1.2}
 .fold{min-height:calc(100svh - 32px)}
@@ -435,11 +449,12 @@ html:not(.js) .tick>div{animation:none}
   <div class="stage">
     <div class="say">
       <h1><span>Powered by <em class="laser" style="font-style:normal">lasers</em></span> <span class="next">Fueled by your imagination</span></h1>
-      <div class="acts"><a class="btn" href="#quote">Request a Quote</a><a class="btn ghost" href="#install">How it installs</a></div>
-      <div class="marks"><p><svg aria-hidden="true"><use href="#i-shield"/></svg>FDA certified</p></div>
+      <p class="own">Leave the implementation and installation to us</p>
+      <div class="acts"><a class="btn" href="#quote">Request a Quote</a><a class="btn line" href="#quote" id="consult">Book a consult</a><a class="btn ghost" href="#install">How it installs</a></div>
+      <div class="marks"><p><svg aria-hidden="true"><use href="#i-shield"/></svg>FDA certified</p><img class="seal" src="assets/w/award.webp" decoding="async" alt="Best New Product Award Winner, Special Effects, LDI 2024"></div>
     </div>
     <div class="pic">
-      <img src="assets/w/hero-1920.webp" srcset="assets/w/hero-828.webp 828w, assets/w/hero-1280.webp 1280w, assets/w/hero-1920.webp 1920w, assets/w/hero-2800.webp 2800w" sizes="(max-width:640px) 205vw, (max-width:1040px) 150vw, 100vw" fetchpriority="high" alt="A two-story luxury home at dusk with cyan fiber light along its roof and magenta fiber light around its pool"><img class="seal" src="assets/w/award.webp" decoding="async" alt="Best New Product Award Winner, Special Effects, LDI 2024">
+      <img src="assets/w/hero-1920.webp" srcset="assets/w/hero-828.webp 828w, assets/w/hero-1280.webp 1280w, assets/w/hero-1920.webp 1920w, assets/w/hero-2800.webp 2800w" sizes="(max-width:640px) 205vw, (max-width:1040px) 150vw, 100vw" fetchpriority="high" alt="A two-story luxury home at dusk with cyan fiber light along its roof and magenta fiber light around its pool">
     </div>
   </div>
   <div class="strip-row">
@@ -479,7 +494,7 @@ html:not(.js) .tick>div{animation:none}
 </section>
 
 <section class="why">
-  <div class="intro rise"><h2>Why lasers beat LED</h2></div>
+  <div class="intro rise"><h2 class="big">Why <em class="laser" style="font-style:normal">lasers</em> beat <span class="dim">LED</span></h2></div>
   <table class="vs rise">
     <thead><tr><td class="side"></td><th scope="col" class="led"><i class="strip dots" aria-hidden="true"></i>Traditional LED</th><th scope="col" class="las"><i class="strip beam" aria-hidden="true"></i>Jagoteq laser fiber</th></tr></thead>
     <tbody>
@@ -494,7 +509,7 @@ html:not(.js) .tick>div{animation:none}
 </section>
 
 <section class="show" id="products">
-  <div class="intro rise"><h2>Choose the engine that lights your project</h2><p>The engine makes the light, so pick the one that suits where it’s going</p></div>
+  <div class="intro rise"><h2>Choose the engine that lights your project</h2><p>Pick by where it’s going: the big one, the compact one or the tough one</p></div>
   <div class="eng">
     <article class="card rise">
       <div class="ph"><img src="assets/w/e-lf120-800.webp" srcset="assets/w/e-lf120-480.webp 480w, assets/w/e-lf120-800.webp 800w" sizes="(max-width:1040px) 100vw, 34vw" alt="The LF120 laser engine on a truss, with glowing purple fiber" loading="lazy"></div>
@@ -550,11 +565,6 @@ html:not(.js) .tick>div{animation:none}
     </div>
     <div class="view"><canvas id="scene" aria-label="A 3D view of a Jagoteq system: a small engine, a long dark transfer fiber, a connector, glowing fiber and an end cap"></canvas></div>
   </div>
-</section>
-
-<section class="leave">
-  <div class="rise"><h2>Leave the implementation to us</h2><p>We install it and bring your vision to life</p></div>
-  <a class="btn rise" href="#quote" id="consult">Book a consult</a>
 </section>
 
 <section class="faq" id="questions">
@@ -641,11 +651,11 @@ const rentOpen=()=>{if(location.hash==='#rent')$('rent').open=true};addEventList
 document.querySelector('a[href="#rent"]').addEventListener('click',()=>{$('rent').open=true});
 
 const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
-if(!calm){const v=document.querySelector('.jobs video'),go=()=>{v.preload='auto';v.play().catch(()=>{})};document.readyState==='complete'?go():addEventListener('load',go,{once:true})}
+{const v=document.querySelector('.jobs video'),go=()=>{v.preload='auto';v.play().catch(()=>{})};document.readyState==='complete'?go():addEventListener('load',go,{once:true})}
 
 /* The Genesis film plays in its box. The player is enlarged so YouTube's own title and buttons sit outside the box, which lets the still
    drop the moment the film runs. It comes back before the end screen, so the film loops with no player showing. YouTube needs a web address, so an opened file keeps the still */
-if(!calm&&location.protocol.startsWith('http')){const box=$('genesis'),host=document.createElement('div');host.id='gfilm';box.prepend(host);
+if(location.protocol.startsWith('http')){const box=$('genesis'),host=document.createElement('div');host.id='gfilm';box.prepend(host);
  let timer,turning=false;const show=()=>{clearTimeout(timer);timer=setTimeout(()=>box.classList.add('live'),200)};
  window.onYouTubeIframeAPIReady=()=>{const p=new YT.Player('gfilm',{videoId:'ZA-BQZFrXyE',host:'https://www.youtube-nocookie.com',playerVars:{autoplay:1,mute:1,controls:0,disablekb:1,fs:0,iv_load_policy:3,cc_load_policy:0,playsinline:1,rel:0,origin:location.origin},events:{
    onReady:e=>{e.target.mute();e.target.playVideo()},

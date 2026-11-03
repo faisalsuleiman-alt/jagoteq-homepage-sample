@@ -10,7 +10,7 @@
   rig.classList.remove('flat');
 
   /* The step list works from the start. The 3D picture is built only as a visitor gets near it, so it never holds up the first screen */
-  const list=[...document.querySelectorAll('#steps li')],narrow=matchMedia('(max-width:1040px)'),still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  const list=[...document.querySelectorAll('#steps li')],narrow=matchMedia('(max-width:1040px)'),still=false;
   let P=still?1:0,draw=null,pin=null,dead=false;
   const giveUp=()=>{dead=true;if(pin)pin.kill(true);flat()};
   function place(t){ /* t runs 0 to 1 across all the shots */
