@@ -5,8 +5,7 @@
   const rig=document.getElementById('rig'),canvas=document.getElementById('scene');
   if(!canvas)return;
   const flat=()=>rig.classList.add('flat');
-  const probe=document.createElement('canvas');
-  if(!(probe.getContext('webgl2')||probe.getContext('webgl')))return flat();
+  if(!window.WebGLRenderingContext)return flat();
   rig.classList.remove('flat');
 
   /* The step list works from the start. The 3D picture is built only as a visitor gets near it, so it never holds up the first screen */
