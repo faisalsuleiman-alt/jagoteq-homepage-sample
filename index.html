@@ -78,7 +78,9 @@ h1 .laser{display:inline;background:linear-gradient(90deg,#e23bff,#5a5bff,#19d3f
 .pic>img:first-child{position:absolute;inset:0;object-position:100% 62%}
 .marks .seal{width:calc(var(--u) * 6);height:auto;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))}
 .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--hero),transparent 10%,transparent 88%,var(--hero))}
-.pic>img:first-child{object-position:100% 50%}
+.pic>img:first-child,.herov{object-position:100% 50%}
+.herov{position:absolute;inset:0;opacity:0;transition:opacity .9s}
+.herov.on{opacity:1}
 .pic::after{background:linear-gradient(180deg,var(--hero),transparent 11%,transparent 90%,var(--hero)),linear-gradient(90deg,rgba(8,19,31,.86),rgba(8,19,31,.62) 30%,rgba(8,19,31,0) 52%)}
 .gains{flex:1;display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s1) var(--s4)}
 .gains li{display:flex;align-items:baseline;gap:6px;color:var(--pale);font-size:var(--t-1);line-height:1.3;white-space:nowrap}
@@ -280,7 +282,7 @@ footer{padding:var(--s5) var(--m);background:var(--night);color:var(--pale);font
   .top nav a:not(.rent):not(.go):not([href="#products"]):not([href="#questions"]){display:none}
   .stage{flex-direction:column;align-items:stretch}
   .pic{position:relative;inset:auto;flex:1 1 auto;order:-1;min-height:34svh}
-  .pic>img:first-child{object-position:var(--phone-x,62%) 62%}
+  .pic>img:first-child,.herov{object-position:var(--phone-x,62%) 62%}
   .marks{flex-direction:row;align-items:center;justify-content:space-between}
   .marks .seal{width:72px}
   .pic::after{background:linear-gradient(180deg,var(--hero),transparent max(14%,48px),transparent 66%,var(--hero) 96%)}
@@ -454,7 +456,7 @@ html:not(.js) .tick>div{animation:none}
       <div class="marks"><p><svg aria-hidden="true"><use href="#i-shield"/></svg>FDA certified</p><img class="seal" src="assets/w/award.webp" decoding="async" alt="Best New Product Award Winner, Special Effects, LDI 2024"></div>
     </div>
     <div class="pic">
-      <img src="assets/w/hero-1920.webp" srcset="assets/w/hero-828.webp 828w, assets/w/hero-1280.webp 1280w, assets/w/hero-1920.webp 1920w, assets/w/hero-2800.webp 2800w" sizes="(max-width:640px) 205vw, (max-width:1040px) 150vw, 100vw" fetchpriority="high" alt="A two-story luxury home at dusk with cyan fiber light along its roof and magenta fiber light around its pool">
+      <img src="assets/w/hero-1920.webp" srcset="assets/w/hero-828.webp 828w, assets/w/hero-1280.webp 1280w, assets/w/hero-1920.webp 1920w, assets/w/hero-2800.webp 2800w" sizes="(max-width:640px) 205vw, (max-width:1040px) 150vw, 100vw" fetchpriority="high" alt="A two-story luxury home at dusk with cyan fiber light along its roof and magenta fiber light around its pool"><video class="herov" muted loop playsinline preload="none" aria-hidden="true"><source src="assets/hero-wide.mp4" type="video/mp4" media="(min-width:1100px)"><source src="assets/hero-small.mp4" type="video/mp4"></video>
     </div>
   </div>
   <div class="strip-row">
@@ -651,7 +653,8 @@ const rentOpen=()=>{if(location.hash==='#rent')$('rent').open=true};addEventList
 document.querySelector('a[href="#rent"]').addEventListener('click',()=>{$('rent').open=true});
 
 const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
-{const v=document.querySelector('.jobs video'),go=()=>{v.preload='auto';v.play().catch(()=>{})};document.readyState==='complete'?go():addEventListener('load',go,{once:true})}
+{const hv=document.querySelector('.herov');hv.addEventListener('playing',()=>hv.classList.add('on'),{once:true});
+ const v=document.querySelector('.jobs video'),go=()=>{hv.preload='auto';hv.play().catch(()=>{});v.preload='auto';v.play().catch(()=>{})};document.readyState==='complete'?go():addEventListener('load',go,{once:true})}
 
 /* The Genesis film plays in its box. The player is enlarged so YouTube's own title and buttons sit outside the box, which lets the still
    drop the moment the film runs. It comes back before the end screen, so the film loops with no player showing. YouTube needs a web address, so an opened file keeps the still */
